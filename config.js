@@ -46,7 +46,7 @@ const KANSHI_CONFIG = {
             price: "Rp 35.000 - 185.000",
             category: "Fanart",
             img: "https://files.catbox.moe/fvhjm2.jpg",
-            stock: &,
+            stock: "&",
             isAvailable: true
         },
         {
