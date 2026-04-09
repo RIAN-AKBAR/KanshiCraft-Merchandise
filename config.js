@@ -22,7 +22,7 @@ const KANSHI_CONFIG = {
             desc: "Lukisan Digital, ukuran 1536 X 2048 px, style bebas",
             price: "Rp 35.000 - 185.000",
             category: "Fanart",
-            img: "https://files.catbox.moe/fvhjm2.jpg", // temporary placeholder
+            <img src="https://files.catbox.moe/fvhjm2.jpg">, // temporary placeholder
             stock: "&", 
             isAvailable: true
         }
