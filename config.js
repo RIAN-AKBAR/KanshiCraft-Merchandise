@@ -21,10 +21,10 @@ const KANSHI_CONFIG = {
     STORE_DESCRIPTION: "Kerajinan tangan modern dengan sentuhan artistik",
     
     // Social Media Links
-    INSTAGRAM_URL: "https://www.instagram.com/kanshicraft",
+    INSTAGRAM_URL: "https://www.instagram.com/kroketfun.zy?igsh=aWh3dGNkazRobzB4",
     INSTAGRAM_DIRECT_ID: "17843367183524675", // ID untuk direct message
-    WHATSAPP_NUMBER: "6281234567890",
-    EMAIL: "cs@kanshicraft.com",
+    WHATSAPP_NUMBER: "6285167089251",
+    EMAIL: "rian032008@gmail.com",
     
     // ========== PRODUK LIST ==========
     // Format: 
@@ -41,12 +41,12 @@ const KANSHI_CONFIG = {
     PRODUCTS: [
         {
             id: 1,
-            name: "Matahari Senja • Lukisan Akrilik",
-            desc: "Lukisan tangan di kanvas, ukuran 30x40 cm, nuansa hangat cocok untuk dekorasi ruangan",
-            price: "Rp 275.000",
-            category: "menggambar",
-            img: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500&auto=format",
-            stock: 5,
+            name: "Custom Chibi Art",
+            desc: "Lukisan Digital, ukuran 1536 X 2048 cm, style bebas",
+            price: "Rp 35.000 - 185.000",
+            category: "Fanart",
+            img: "https://files.catbox.moe/fvhjm2.jpg",
+            stock: &,
             isAvailable: true
         },
         {
