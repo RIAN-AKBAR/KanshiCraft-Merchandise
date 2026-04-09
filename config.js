@@ -9,7 +9,7 @@ const KANSHI_CONFIG = {
     // ========== MAINTENANCE MODE ==========
     // Set ke true untuk mengaktifkan mode maintenance
     // Semua pengunjung akan dialihkan ke maintenance.html
-    MAINTENANCE_MODE: true,
+    MAINTENANCE_MODE: false,
     
     // Pesan yang ditampilkan saat maintenance (akan ditampilkan di maintenance page)
     MAINTENANCE_MESSAGE: "Kami sedang melakukan perbaikan dan peningkatan sistem",
