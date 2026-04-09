@@ -22,8 +22,8 @@ const KANSHI_CONFIG = {
             desc: "Lukisan Digital, ukuran 1536 X 2048 px, style bebas",
             price: "Rp 35.000 - 185.000",
             category: "Fanart",
-            <img src="https://files.catbox.moe/fvhjm2.jpg">, // temporary placeholder
-            stock: "&", 
+            img: "https://placehold.co/600x800/2a231f/e6bc91?text=Chibi+Art", // temporary placeholder
+            stock: 10,  // ✅ PERBAIKAN 2: "&" → angka 10
             isAvailable: true
         }
     ],
