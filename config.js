@@ -45,7 +45,7 @@ const KANSHI_CONFIG = {
             desc: "Lukisan Digital, ukuran 1536 X 2048 cm, style bebas",
             price: "Rp 35.000 - 185.000",
             category: "Fanart",
-            img: "https://files.catbox.moe/fvhjm2.jpg/",
+            img: "https://ibb.co.com/4HRKr7B",
             stock: "&",
             isAvailable: true
         }
