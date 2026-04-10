@@ -22,7 +22,7 @@ const KANSHI_CONFIG = {
         {
             id: 1,
             name: "Custom Chibi Art",
-            desc: "Lukisan Digital <br> ukuran 1536 X 2048 px <br> ukuran 2048 x 2048 px <br> ukuran 1600 x 900 px <br> Style bebas",
+            desc: "S&K CUSTOM CHIBI ART <br> <br> 1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien. <br> 2. Maksimal 3 kali revisi (sketsa). Revisi tambahan kena biaya. <br> 3. Pengerjaan 5–7 hari kerja (tergantung antrean). <br> 4. File diberikan dalam format PNG melalui drive. <br> 5. Tidak menerima pembuatan NSFW & Mecha.",
             price: "Rp 35.000 - 195.000",
             category: "Fanart",
             img: "https://cdn.phototourl.com/free/2026-04-09-c92ea1ec-b18c-483e-a4d2-10380077d3e5.jpg",
