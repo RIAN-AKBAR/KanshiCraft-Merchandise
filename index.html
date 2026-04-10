@@ -139,6 +139,411 @@
         <div class="search-section">
             <div class="search-box">
                 <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Cari produk... contoh: chibi, boneka">
+                <button id="searchBtn">Cari</button>
+            </div>
+            <div class="category-filter" id="categoryFilter"></div>
+        </div>
+        
+        <div class="rating-section">
+            <div class="rating-stats">
+                <div class="rating-score">
+                    <span class="big-score">4.9</span>
+                    <div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        <div class="total-rating">2.5 Juta rating</div>
+                    </div>
+                </div>
+                <div class="rating-bars">
+                    <div class="rating-bar-item"><span class="star-label">5⭐</span><div class="bar"><div class="bar-fill" style="width:85%"></div></div><span class="percent">85%</span></div>
+                    <div class="rating-bar-item"><span class="star-label">4⭐</span><div class="bar"><div class="bar-fill" style="width:10%"></div></div><span class="percent">10%</span></div>
+                </div>
+            </div>
+            <div class="rating-actions">
+                <button class="rating-btn" id="writeReviewBtn"><i class="fas fa-pen"></i> Ulasan</button>
+                <button class="rating-btn" id="viewReviewsBtn"><i class="fas fa-comments"></i> 500rb+</button>
+            </div>
+        </div>
+        
+        <div class="hero-banner"><img id="heroImage" src="" alt="Banner" onerror="this.src='https://placehold.co/1200x400/1a1a2e/e6bc91?text=KanshiCraft+Banner'"></div>
+        <div class="hero-caption" id="heroCaptions"></div>
+        
+        <div class="tutorial-section">
+            <div class="tutorial-title"><i class="fab fa-instagram"></i> <i class="fab fa-telegram"></i> Cara Pesan</div>
+            <div class="steps-grid" id="stepsGrid"></div>
+            <p style="text-align:center; margin-top:16px; font-size:0.7rem;"><i class="fas fa-info-circle"></i> Klik Telegram → pesan terisi otomatis. Klik IG → copy pesan & buka profil.</p>
+        </div>
+        
+        <div class="section-title" id="products">✦ Pilihan Karya Terbaik ✦</div>
+        <div class="products-grid" id="productGrid"></div>
+    </div>
+</main>
+
+<footer><div class="container"><p id="footerText"></p><p style="margin-top:6px;" id="footerSubtext"></p></div></footer>
+
+<div id="cartModal" class="cart-modal">
+    <div class="cart-modal-card">
+        <div class="cart-header"><h3><i class="fas fa-shopping-cart"></i> Keranjang</h3><button class="close-cart" id="closeCartBtn">&times;</button></div>
+        <div id="cartItemsContainer" class="cart-items"><div class="empty-cart">Keranjang kosong 🛒</div></div>
+        <div class="cart-summary" id="cartSummary" style="display:none;">
+            <div class="cart-total"><span>Total:</span><span id="cartTotalPrice">Rp 0</span></div>
+            <div class="checkout-buttons"><button class="checkout-ig-btn" id="checkoutIgBtn"><i class="fab fa-instagram"></i> IG</button><button class="checkout-tg-btn" id="checkoutTgBtn"><i class="fab fa-telegram"></i> Telegram</button></div>
+        </div>
+    </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+    (function(){
+        let CONFIG = window.KANSHI_CONFIG || null;
+        let cart = [];
+        let currentCategory = "all";
+        let currentSearch = "";
+        let allProducts = [];
+        
+        let IG_USERNAME = "";
+        let TG_USERNAME = "";
+        
+        if(CONFIG){
+            let match = CONFIG.INSTAGRAM_URL ? CONFIG.INSTAGRAM_URL.match(/instagram\.com\/([^\/?]+)/) : null;
+            if(match) IG_USERNAME = match[1];
+            TG_USERNAME = CONFIG.TELEGRAM_USERNAME ? CONFIG.TELEGRAM_USERNAME.replace("@","") : "";
+        }
+        
+        function saveCart(){ localStorage.setItem('kanshi_cart',JSON.stringify(cart)); updateCartUI(); }
+        function loadCart(){ let s=localStorage.getItem('kanshi_cart'); if(s) cart=JSON.parse(s); updateCartUI(); }
+        
+        function updateCartUI(){
+            let totalItems = cart.reduce((s,i)=>s+i.quantity,0);
+            let cc = document.getElementById('cartCount');
+            if(cc) cc.innerText = totalItems;
+            let container = document.getElementById('cartItemsContainer');
+            let summary = document.getElementById('cartSummary');
+            if(!container) return;
+            if(cart.length===0){
+                container.innerHTML = '<div class="empty-cart">Keranjang kosong 🛒</div>';
+                if(summary) summary.style.display = 'none';
+                return;
+            }
+            let total=0, html='';
+            cart.forEach((item,idx)=>{
+                let priceNum = parseInt(item.price.replace(/[^0-9]/g,'')) || 0;
+                let itemTotal = priceNum * item.quantity;
+                total += itemTotal;
+                html += `<div class="cart-item"><div class="cart-item-info"><div class="cart-item-title">${item.name}</div><div>${item.price}</div></div><div><button class="cart-qty-btn" data-idx="${idx}" data-delta="-1">-</button><span style="margin:0 8px;">${item.quantity}</span><button class="cart-qty-btn" data-idx="${idx}" data-delta="1">+</button><button class="remove-item" data-idx="${idx}" style="margin-left:10px;"><i class="fas fa-trash"></i></button></div></div>`;
+            });
+            container.innerHTML = html;
+            if(summary) summary.style.display = 'block';
+            let tp = document.getElementById('cartTotalPrice');
+            if(tp) tp.innerText = `Rp ${total.toLocaleString()}`;
+            document.querySelectorAll('.cart-qty-btn').forEach(btn=>{
+                btn.onclick = ()=>{
+                    let idx = parseInt(btn.dataset.idx), delta = parseInt(btn.dataset.delta);
+                    let newQty = cart[idx].quantity + delta;
+                    if(newQty<=0) cart.splice(idx,1);
+                    else cart[idx].quantity = newQty;
+                    saveCart();
+                };
+            });
+            document.querySelectorAll('.remove-item').forEach(btn=>{
+                btn.onclick = ()=>{ cart.splice(parseInt(btn.dataset.idx),1); saveCart(); };
+            });
+        }
+        
+        function addToCart(p){
+            let exist = cart.find(i=>i.id===p.id);
+            if(exist) exist.quantity++;
+            else cart.push({id:p.id, name:p.name, price:p.price, quantity:1, shippingEstimate:p.shippingEstimate});
+            saveCart();
+            alert(`✅ ${p.name} ditambahkan ke keranjang!`);
+        }
+        
+        function formatSingleMessage(p){
+            let date = new Date().toLocaleDateString('id-ID');
+            let catLabel = "🎨 Produk Kreatif";
+            if(p.category==="boneka") catLabel = "🧸 Boneka Tangan";
+            else if(p.category==="aksesoris") catLabel = "💍 Aksesoris";
+            else if(p.category==="Fanart") catLabel = "🎨 Custom Fanart";
+            let est = (p.shippingEstimate || CONFIG?.DEFAULT_SHIPPING_ESTIMATE || "2-4 hari kerja").replace(/\(.*?\)/g,'').trim();
+            return `✨ KARTU PEMBELI KANSHI ✨\n\n🌸 Halo Kak! Saya tertarik dengan produk ini:\n\n📌 ${p.name}\n💰 ${p.price}\n🎁 Kategori: ${catLabel}\n⏱️ Estimasi: ${est}\n\n📅 ${date}\n\n💫 "Setiap goresan & jahitan punya cerita."\n\nMohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷\n\n— Pembeli dari ${CONFIG?.STORE_NAME || "KanshiCraft"}`;
+        }
+        
+        function formatCartMessage(){
+            let date = new Date().toLocaleDateString('id-ID');
+            let items='', total=0;
+            cart.forEach(i=>{
+                let priceNum = parseInt(i.price.replace(/[^0-9]/g,'')) || 0;
+                total += priceNum * i.quantity;
+                items += `\n📌 ${i.name} x${i.quantity} = ${i.price}`;
+            });
+            let est = (cart[0]?.shippingEstimate || CONFIG?.DEFAULT_SHIPPING_ESTIMATE || "2-4 hari kerja").replace(/\(.*?\)/g,'').trim();
+            return `✨ KARTU PEMBELI KANSHI ✨\n\n🌸 Halo Kak! Saya ingin memesan:${items}\n\n📦 Total: Rp ${total.toLocaleString()}\n⏱️ Estimasi: ${est}\n\n📅 ${date}\n\n💫 "Setiap goresan & jahitan punya cerita."\n\nMohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷\n\n— Pembeli dari ${CONFIG?.STORE_NAME || "KanshiCraft"}`;
+        }
+        
+        function sendToTelegram(msg){
+            if(!TG_USERNAME){ alert("Username Telegram belum diatur!"); return; }
+            window.open(`https://t.me/${TG_USERNAME}?text=${encodeURIComponent(msg)}`,'_blank');
+        }
+        
+        function buyViaInstagram(msg){
+            if(!IG_USERNAME){ alert("Username Instagram belum diatur!"); return; }
+            navigator.clipboard.writeText(msg).then(()=>{
+                window.open(`https://www.instagram.com/${IG_USERNAME}/`,'_blank');
+                alert("📋 Pesan sudah disalin! Silakan buka DM dan paste.");
+            }).catch(()=>alert("⚠️ Silakan copy manual:\n\n"+msg));
+        }
+        
+        function buyNow(p,platform){
+            let msg = formatSingleMessage(p);
+            if(platform==='tg') sendToTelegram(msg);
+            else buyViaInstagram(msg);
+        }
+        
+        function checkoutCart(platform){
+            if(cart.length===0){ alert("Keranjang kosong!"); return; }
+            let msg = formatCartMessage();
+            if(platform==='tg') sendToTelegram(msg);
+            else buyViaInstagram(msg);
+            cart = []; saveCart();
+            document.getElementById('cartModal').style.display = 'none';
+        }
+        
+        function renderProducts(products){
+            let grid = document.getElementById('productGrid');
+            if(!grid) return;
+            if(products.length===0){
+                grid.innerHTML = '<p style="text-align:center; grid-column:1/-1; color:#b7a58f; padding:40px;"><i class="fas fa-search"></i> Produk tidak ditemukan.</p>';
+                return;
+            }
+            grid.innerHTML = '';
+            products.forEach(p=>{
+                let stockHtml = p.stock ? `<div class="stock-badge"><i class="fas fa-box"></i> Stok: ${p.stock}</div>` : '';
+                let imgUrl = p.img || 'https://placehold.co/600x600/1a1a2e/e6bc91?text=KanshiCraft';
+                let card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `<img class="product-img" src="${imgUrl}" onerror="this.src='https://placehold.co/600x600/1a1a2e/e6bc91?text=KanshiCraft'"><div class="product-info"><div class="product-title">${p.name}</div><div class="product-desc">${p.desc || ''}</div>${stockHtml}<div class="price">${p.price}</div><div class="button-group"><button class="cart-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Tambah</button><button class="buy-ig-btn" data-id="${p.id}"><i class="fab fa-instagram"></i> IG</button><button class="buy-tg-btn" data-id="${p.id}"><i class="fab fa-telegram"></i> TG</button></div></div>`;
+                grid.appendChild(card);
+            });
+            document.querySelectorAll('.cart-btn').forEach(btn=>{ btn.onclick = ()=>{ let p = allProducts.find(x=>x.id==btn.dataset.id); if(p) addToCart(p); }; });
+            document.querySelectorAll('.buy-ig-btn').forEach(btn=>{ btn.onclick = ()=>{ let p = allProducts.find(x=>x.id==btn.dataset.id); if(p) buyNow(p,'ig'); }; });
+            document.querySelectorAll('.buy-tg-btn').forEach(btn=>{ btn.onclick = ()=>{ let p = allProducts.find(x=>x.id==btn.dataset.id); if(p) buyNow(p,'tg'); }; });
+        }
+        
+        function filterProducts(){
+            let filtered = [...allProducts];
+            if(currentCategory !== "all") filtered = filtered.filter(p=>p.category === currentCategory);
+            if(currentSearch.trim() !== ""){
+                let sl = currentSearch.toLowerCase();
+                filtered = filtered.filter(p=>p.name.toLowerCase().includes(sl) || (p.desc||"").toLowerCase().includes(sl) || (p.category||"").toLowerCase().includes(sl));
+            }
+            renderProducts(filtered);
+        }
+        
+        function renderCategories(){
+            let cats = new Set(["all"]);
+            allProducts.forEach(p=>{ if(p.category) cats.add(p.category); });
+            let container = document.getElementById('categoryFilter');
+            if(!container) return;
+            let catNames = {"all":"Semua","Fanart":"🎨 Fanart","boneka":"🧸 Boneka","aksesoris":"💍 Aksesoris","Give & Merchandise":"🎁 Merch","Live Streaming":"🎥 Live","Stiker":"🏷️ Stiker"};
+            container.innerHTML = '';
+            cats.forEach(cat=>{
+                let chip = document.createElement('span');
+                chip.className = 'category-chip' + (currentCategory===cat ? ' active' : '');
+                chip.innerText = catNames[cat] || cat;
+                chip.onclick = ()=>{
+                    document.querySelectorAll('.category-chip').forEach(c=>c.classList.remove('active'));
+                    chip.classList.add('active');
+                    currentCategory = cat;
+                    filterProducts();
+                };
+                container.appendChild(chip);
+            });
+        }
+        
+        function init(){
+            if(!CONFIG){
+                let grid = document.getElementById('productGrid');
+                if(grid) grid.innerHTML = '<p style="text-align:center;color:red;">Error: Config tidak ditemukan.</p>';
+                return;
+            }
+            allProducts = [...(CONFIG.PRODUCTS || [])];
+            let logo = document.getElementById('logoImg');
+            if(logo) logo.src = CONFIG.LOGO_URL || 'https://placehold.co/200x200/1a1a2e/e6bc91?text=KC';
+            let sn = document.getElementById('storeName');
+            if(sn) sn.innerHTML = CONFIG.STORE_NAME;
+            let st = document.getElementById('storeTagline');
+            if(st) st.innerText = CONFIG.STORE_TAGLINE;
+            let hi = document.getElementById('heroImage');
+            if(hi && CONFIG.HERO_IMAGES && CONFIG.HERO_IMAGES[0]) hi.src = CONFIG.HERO_IMAGES[0];
+            let hc = document.getElementById('heroCaptions');
+            if(hc && CONFIG.HERO_CAPTIONS) hc.innerHTML = CONFIG.HERO_CAPTIONS.map(c=>`<span><i class="fas ${c.icon}"></i> ${c.text}</span>`).join('');
+            let sg = document.getElementById('stepsGrid');
+            if(sg && CONFIG.TUTORIAL_STEPS) sg.innerHTML = CONFIG.TUTORIAL_STEPS.map(s=>`<div class="step-card"><div class="step-number">${s.number}</div><i class="fas ${s.icon}"></i><h4>${s.title}</h4><p>${s.description}</p></div>`).join('');
+            let ft = document.getElementById('footerText');
+            if(ft) ft.innerText = CONFIG.FOOTER_TEXT;
+            let fs = document.getElementById('footerSubtext');
+            if(fs) fs.innerText = CONFIG.FOOTER_SUBTEXT;
+            renderCategories();
+            filterProducts();
+            loadCart();
+        }
+        
+        document.getElementById('writeReviewBtn')?.addEventListener('click',()=>alert("⭐ Terima kasih! Ulasan kamu sangat berharga.\n\nKamu bisa menulis ulasan di:\n- Instagram: DM @kroketfun.zy\n- Telegram: t.me/kroketfun"));
+        document.getElementById('viewReviewsBtn')?.addEventListener('click',()=>alert("📝 500.000+ ULASAN\n\n⭐ 4.9 dari 2.5 Juta rating\n\n💬 Testimonial:\n'Kualitasnya luar biasa! Pengiriman cepat.' - ★★★★★\n'Rajutannya rapi banget!' - ★★★★★\n'Friendly seller, produk sesuai ekspektasi' - ★★★★★"));
+        document.getElementById('searchBtn')?.addEventListener('click',()=>{ currentSearch = document.getElementById('searchInput').value; filterProducts(); });
+        document.getElementById('searchInput')?.addEventListener('keypress',(e)=>{ if(e.key==='Enter'){ currentSearch = e.target.value; filterProducts(); } });
+        document.getElementById('cartIcon')?.addEventListener('click',()=>document.getElementById('cartModal').style.display='flex');
+        document.getElementById('closeCartBtn')?.addEventListener('click',()=>document.getElementById('cartModal').style.display='none');
+        document.getElementById('checkoutIgBtn')?.addEventListener('click',()=>checkoutCart('ig'));
+        document.getElementById('checkoutTgBtn')?.addEventListener('click',()=>checkoutCart('tg'));
+        window.onclick = (e)=>{ if(e.target === document.getElementById('cartModal')) document.getElementById('cartModal').style.display='none'; };
+        
+        if(CONFIG) init();
+        else window.addEventListener('load',()=>{ if(window.KANSHI_CONFIG){ CONFIG=window.KANSHI_CONFIG; init(); } });
+    })();
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>KanshiCraft | Kerajinan Tangan Modern</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0a0a; color: #ece8e2; scroll-behavior: smooth; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+        
+        .header { padding: 24px 0; border-bottom: 1px solid #2a2622; background: rgba(11, 10, 10, 0.92); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo-area { display: flex; align-items: center; gap: 14px; }
+        .logo-img { width: 52px; height: 52px; object-fit: cover; border-radius: 20px; background: #2b2520; border: 1px solid #4a3e34; }
+        .logo-text h1 { font-size: 1.7rem; font-weight: 600; background: linear-gradient(135deg, #f3e3d3, #c9aa8a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo-text p { font-size: 0.8rem; color: #b7a58f; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #e0d3c6; font-weight: 500; }
+        .nav-links a:hover { color: #e7bc91; }
+        
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.4rem; color: #e0d3c6; }
+        .cart-count { position: absolute; top: -8px; right: -12px; background: #e6bc91; color: #1e1712; font-size: 0.7rem; font-weight: bold; padding: 2px 6px; border-radius: 20px; }
+        
+        .search-section { margin: 24px 0 16px; }
+        .search-box { display: flex; gap: 12px; align-items: center; background: #1e1a17; border-radius: 60px; padding: 8px 20px; border: 1px solid #3a322b; }
+        .search-box i { color: #b7a58f; }
+        .search-box input { flex: 1; background: none; border: none; padding: 12px 0; color: #ece8e2; font-size: 1rem; outline: none; }
+        .search-box input::placeholder { color: #6a5a4b; }
+        .search-box button { background: #e6bc91; border: none; padding: 8px 24px; border-radius: 40px; color: #1e1712; font-weight: 600; cursor: pointer; }
+        .category-filter { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+        .category-chip { background: #2d2722; padding: 6px 16px; border-radius: 40px; font-size: 0.8rem; cursor: pointer; border: 1px solid #4c3e33; }
+        .category-chip:hover, .category-chip.active { background: #e6bc91; color: #1e1712; border-color: #e6bc91; }
+        
+        .rating-section { background: #13100e; border-radius: 20px; padding: 12px 20px; margin: 0 0 20px; border: 1px solid #2f2822; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+        .rating-stats { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .rating-score { display: flex; align-items: center; gap: 8px; }
+        .rating-score .big-score { font-size: 1.6rem; font-weight: 700; color: #e6bc91; }
+        .rating-score .stars { color: #ffc107; font-size: 0.8rem; }
+        .rating-score .total-rating { font-size: 0.7rem; color: #b7a58f; }
+        .rating-bars { display: flex; gap: 16px; align-items: center; }
+        .rating-bar-item { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; }
+        .rating-bar-item .star-label { color: #ffc107; min-width: 30px; }
+        .rating-bar-item .bar { width: 60px; height: 4px; background: #2a231f; border-radius: 4px; overflow: hidden; }
+        .rating-bar-item .bar-fill { height: 100%; background: #e6bc91; border-radius: 4px; }
+        .rating-bar-item .percent { width: 35px; text-align: right; color: #b7a58f; }
+        .rating-actions { display: flex; gap: 8px; }
+        .rating-btn { background: #2d2722; border: 1px solid #4c3e33; padding: 6px 14px; border-radius: 40px; cursor: pointer; color: #e0d3c6; font-size: 0.7rem; }
+        .rating-btn:hover { background: #e6bc91; color: #1e1712; }
+        
+        .hero-banner { margin-top: 0; border-radius: 24px; overflow: hidden; background: #0f0d0b; }
+        .hero-banner img { width: 100%; min-height: 200px; max-height: 300px; object-fit: cover; display: block; }
+        .hero-caption { text-align: center; margin-top: 16px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+        .hero-caption span { background: #201c18; padding: 4px 12px; border-radius: 40px; font-size: 0.7rem; }
+        
+        .tutorial-section { background: #13100e; border-radius: 24px; padding: 24px 20px; margin: 32px 0; border: 1px solid #2f2822; }
+        .tutorial-title { font-size: 1.3rem; font-weight: 600; text-align: center; margin-bottom: 20px; color: #e6bc91; }
+        .steps-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+        .step-card { background: #1e1a17; border-radius: 20px; padding: 16px; flex: 1; min-width: 140px; text-align: center; border: 1px solid #3a322b; }
+        .step-number { width: 36px; height: 36px; background: #e6bc91; color: #1e1712; border-radius: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 800; margin: 0 auto 12px; }
+        .step-card h4 { font-size: 1rem; margin-bottom: 8px; }
+        .step-card p { font-size: 0.75rem; color: #b6a28c; }
+        .step-card i { font-size: 1.4rem; margin-bottom: 8px; color: #e6bc91; }
+        
+        .section-title { font-size: 1.5rem; font-weight: 500; margin: 40px 0 24px; text-align: center; color: #f2e5da; }
+        .section-title:after { content: ''; display: block; width: 50px; height: 2px; background: #9b7b5c; margin: 8px auto 0; border-radius: 2px; }
+        
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-bottom: 48px; }
+        .product-card { background: #161311; border-radius: 20px; overflow: hidden; border: 1px solid #2f2822; transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-4px); border-color: #6b5542; }
+        .product-img { width: 100%; height: 200px; object-fit: cover; background: #2a231e; }
+        .product-info { padding: 16px; }
+        .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+        .product-desc { font-size: 0.75rem; color: #b6a28c; margin: 6px 0 8px; white-space: pre-line; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .price { font-weight: 700; font-size: 1.2rem; color: #e6bc91; margin: 8px 0 12px; }
+        .stock-badge { display: inline-block; font-size: 0.65rem; background: #2a231f; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+        
+        .button-group { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+        .buy-ig-btn, .buy-tg-btn, .cart-btn { flex: 1; padding: 8px 0; font-size: 0.75rem; font-weight: 600; border-radius: 30px; cursor: pointer; text-align: center; border: none; }
+        .buy-ig-btn { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: white; }
+        .buy-tg-btn { background: #26A5E4; color: white; }
+        .cart-btn { background: #2d2722; color: #f2e5da; border: 1px solid #4c3e33; }
+        
+        .cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); justify-content: center; align-items: center; z-index: 1000; }
+        .cart-modal-card { background: #1e1a17; max-width: 500px; width: 90%; border-radius: 28px; padding: 24px; border: 1px solid #5c4a3a; max-height: 80vh; overflow-y: auto; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #b7a58f; }
+        .cart-items { max-height: 350px; overflow-y: auto; margin-bottom: 16px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #2f2822; flex-wrap: wrap; gap: 8px; font-size: 0.8rem; }
+        .cart-item-info { flex: 2; }
+        .cart-item-title { font-weight: 600; }
+        .cart-qty-btn { background: #3b322c; border: none; width: 24px; height: 24px; border-radius: 20px; cursor: pointer; color: #e6bc91; }
+        .remove-item { background: none; border: none; color: #b55a4a; cursor: pointer; }
+        .cart-summary { border-top: 2px solid #4a3e34; padding-top: 16px; }
+        .cart-total { display: flex; justify-content: space-between; font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+        .checkout-buttons { display: flex; gap: 10px; }
+        .checkout-ig-btn, .checkout-tg-btn { flex: 1; padding: 10px; border-radius: 30px; font-weight: 600; cursor: pointer; border: none; font-size: 0.8rem; }
+        .checkout-ig-btn { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: white; }
+        .checkout-tg-btn { background: #26A5E4; color: white; }
+        
+        footer { margin-top: 48px; padding: 32px 0; text-align: center; border-top: 1px solid #2f2822; color: #9c8b78; font-size: 0.75rem; }
+        
+        @media (max-width: 700px) {
+            .container { padding: 0 16px; }
+            .products-grid { gap: 16px; }
+            .search-box { padding: 6px 16px; }
+            .search-box input { padding: 8px 0; font-size: 0.9rem; }
+            .search-box button { padding: 6px 16px; font-size: 0.8rem; }
+            .product-img { height: 160px; }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo-area">
+            <img class="logo-img" id="logoImg" src="" alt="Logo">
+            <div class="logo-text">
+                <h1 id="storeName">KanshiCraft Store</h1>
+                <p id="storeTagline">Give & Merchandise</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="#">Beranda</a>
+            <a href="#products">Koleksi</a>
+            <a href="#tutorial">Cara Pesan</a>
+            <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="search-section">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
                 <input type="text" id="searchInput" placeholder="Cari produk...">
                 <button id="searchBtn">Cari</button>
             </div>
