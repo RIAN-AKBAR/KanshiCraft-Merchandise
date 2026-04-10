@@ -1,6 +1,6 @@
 const KANSHI_CONFIG = {
     MAINTENANCE_MODE: false,
-    MAINTENANCE_MESSAGE: "Kami sedang melakukan perbaikan dan peningkatan sistem",
+    MAINTENANCE_MESSAGE: "Kami sedang melakukan perbaikan",
     MAINTENANCE_ETA: "30",
     
     STORE_NAME: "KanshiCraft Store",
@@ -21,7 +21,7 @@ const KANSHI_CONFIG = {
             desc: "S&K CUSTOM CHIBI ART\n\n1. DP 50% di awal, lunas 50% sebelum file dikirim.\n2. Maksimal 3 kali revisi (sketsa).\n3. Pengerjaan 5–7 hari kerja.\n4. File diberikan dalam format PNG.\n5. Tidak menerima NSFW & Mecha.",
             price: "Rp 35.000 - 75.000",
             category: "Fanart",
-            img: "https://placehold.co/600x600/1a1a2e/e6bc91?text=Chibi+Art",
+            img: "https://picsum.photos/id/100/400/400",
             stock: 10,
             isAvailable: true,
             shippingEstimate: "5-7 hari kerja"
@@ -32,7 +32,7 @@ const KANSHI_CONFIG = {
             desc: "Tinggi: ± 20 cm\nBahan: Benang katun berkualitas\nTeknik: Rajut manual 100% buatan tangan\n\n⚠️ Hindari pencucian mesin. Cukup lap dengan kain lembap.",
             price: "Rp 275.000",
             category: "boneka",
-            img: "https://placehold.co/600x600/1a1a2e/e6bc91?text=Bakugou+Doll",
+            img: "https://picsum.photos/id/101/400/400",
             stock: 5,
             isAvailable: true,
             shippingEstimate: "3-5 hari kerja"
@@ -43,7 +43,7 @@ const KANSHI_CONFIG = {
             desc: "S&K CUSTOM PNGTUBER\n\n1. DP 50% di awal.\n2. Memiliki 4 ekspresi base default.\n3. Pengerjaan 7–14 hari kerja.\n4. File diberikan dalam format PNG.",
             price: "Rp 80.000 - 100.000",
             category: "Fanart",
-            img: "https://placehold.co/600x600/1a1a2e/e6bc91?text=PNGtuber",
+            img: "https://picsum.photos/id/102/400/400",
             stock: 5,
             isAvailable: true,
             shippingEstimate: "7-14 hari kerja"
@@ -54,7 +54,7 @@ const KANSHI_CONFIG = {
             desc: "S&K YCH STIKER\n\n1. DP 50% di awal.\n2. Tidak ada revisi karena base sudah disediakan.\n3. Pengerjaan 5-7 hari kerja.\n4. File diberikan dalam format PNG.",
             price: "Rp 50.000",
             category: "aksesoris",
-            img: "https://placehold.co/600x600/1a1a2e/e6bc91?text=YCH+Sticker",
+            img: "https://picsum.photos/id/103/400/400",
             stock: 5,
             isAvailable: true,
             shippingEstimate: "5-7 hari kerja"
@@ -69,10 +69,10 @@ const KANSHI_CONFIG = {
     ],
     
     HERO_IMAGES: [
-        "https://placehold.co/1200x400/1a1a2e/e6bc91?text=KanshiCraft+Banner"
+        "https://picsum.photos/id/104/1200/400"
     ],
     
-    LOGO_URL: "https://placehold.co/200x200/1a1a2e/e6bc91?text=KC",
+    LOGO_URL: "https://picsum.photos/id/105/200/200",
     
     HERO_CAPTIONS: [
         { icon: "fa-feather-alt", text: "kerajinan yang bercerita" },
