@@ -24,7 +24,106 @@
         .cart-icon { position: relative; cursor: pointer; font-size: 1.4rem; color: #e0d3c6; }
         .cart-count { position: absolute; top: -8px; right: -12px; background: #e6bc91; color: #1e1712; font-size: 0.7rem; font-weight: bold; padding: 2px 6px; border-radius: 20px; }
         
-        .hero-banner { margin-top: 32px; border-radius: 48px; overflow: hidden; background: #0f0d0b; }
+        /* ========== RATING SECTION ========== */
+        .rating-section {
+            background: linear-gradient(135deg, #1a1512, #0f0d0b);
+            border-radius: 48px;
+            padding: 24px 32px;
+            margin: 32px 0 24px;
+            border: 1px solid #3a322b;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .rating-stats {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .rating-score {
+            text-align: center;
+        }
+        .rating-score .big-score {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #e6bc91;
+            line-height: 1;
+        }
+        .rating-score .stars {
+            color: #ffc107;
+            font-size: 1.2rem;
+            margin: 8px 0;
+        }
+        .rating-score .total-rating {
+            font-size: 0.8rem;
+            color: #b7a58f;
+        }
+        .rating-bars {
+            flex: 1;
+            min-width: 200px;
+        }
+        .rating-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+        }
+        .rating-bar-item .star-label {
+            width: 60px;
+            color: #ffc107;
+        }
+        .rating-bar-item .bar {
+            flex: 1;
+            height: 6px;
+            background: #2a231f;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .rating-bar-item .bar-fill {
+            height: 100%;
+            background: #e6bc91;
+            border-radius: 10px;
+        }
+        .rating-bar-item .percent {
+            width: 45px;
+            text-align: right;
+            color: #b7a58f;
+        }
+        .rating-actions {
+            display: flex;
+            gap: 16px;
+        }
+        .rating-btn {
+            background: #2d2722;
+            border: 1px solid #4c3e33;
+            padding: 10px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            color: #e0d3c6;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .rating-btn:hover {
+            background: #e6bc91;
+            color: #1e1712;
+            border-color: #e6bc91;
+        }
+        .rating-divider {
+            width: 1px;
+            height: 40px;
+            background: #3a322b;
+        }
+        @media (max-width: 700px) {
+            .rating-section { flex-direction: column; text-align: center; }
+            .rating-stats { flex-direction: column; }
+            .rating-divider { display: none; }
+        }
+        
+        .hero-banner { margin-top: 0; border-radius: 48px; overflow: hidden; background: #0f0d0b; }
         .hero-banner img { width: 100%; min-height: 380px; max-height: 580px; object-fit: contain; background: #0a0908; display: block; }
         .hero-caption { text-align: center; margin-top: 24px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
         .hero-caption span { background: #201c18; padding: 6px 18px; border-radius: 40px; font-size: 0.8rem; }
@@ -76,7 +175,10 @@
         
         footer { margin-top: 70px; padding: 40px 0; text-align: center; border-top: 1px solid #2f2822; color: #9c8b78; font-size: 0.85rem; }
         
-        @media (max-width: 700px) { .container { padding: 0 20px; } .steps-grid, .button-group, .checkout-buttons { flex-direction: column; } }
+        @media (max-width: 700px) {
+            .container { padding: 0 20px; }
+            .steps-grid, .button-group, .checkout-buttons { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
@@ -103,6 +205,55 @@
 
 <main>
     <div class="container">
+        <!-- ========== RATING SECTION (DITAMBAHKAN) ========== -->
+        <div class="rating-section">
+            <div class="rating-stats">
+                <div class="rating-score">
+                    <div class="big-score">4.9</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="total-rating">⭐ 2.5 Juta+ rating • 500rb+ ulasan</div>
+                </div>
+                <div class="rating-bars">
+                    <div class="rating-bar-item">
+                        <span class="star-label">5 <i class="fas fa-star"></i></span>
+                        <div class="bar"><div class="bar-fill" style="width: 85%"></div></div>
+                        <span class="percent">85%</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span class="star-label">4 <i class="fas fa-star"></i></span>
+                        <div class="bar"><div class="bar-fill" style="width: 10%"></div></div>
+                        <span class="percent">10%</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span class="star-label">3 <i class="fas fa-star"></i></span>
+                        <div class="bar"><div class="bar-fill" style="width: 3%"></div></div>
+                        <span class="percent">3%</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span class="star-label">2 <i class="fas fa-star"></i></span>
+                        <div class="bar"><div class="bar-fill" style="width: 1%"></div></div>
+                        <span class="percent">1%</span>
+                    </div>
+                    <div class="rating-bar-item">
+                        <span class="star-label">1 <i class="fas fa-star"></i></span>
+                        <div class="bar"><div class="bar-fill" style="width: 1%"></div></div>
+                        <span class="percent">1%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="rating-divider"></div>
+            <div class="rating-actions">
+                <button class="rating-btn" id="writeReviewBtn"><i class="fas fa-pen"></i> Tulis Ulasan</button>
+                <button class="rating-btn" id="viewReviewsBtn"><i class="fas fa-comments"></i> Lihat Semua (500rb+)</button>
+            </div>
+        </div>
+        
         <div class="hero-banner"><img id="heroImage" src="" alt="Banner"></div>
         <div class="hero-caption" id="heroCaptions"></div>
         <div class="tutorial-section" id="tutorial">
@@ -154,6 +305,15 @@
     if (CONFIG && CONFIG.TELEGRAM_USERNAME) {
         TG_USERNAME = CONFIG.TELEGRAM_USERNAME.replace("@", "");
     }
+    
+    // ========== FUNGSI RATING ==========
+    document.getElementById('writeReviewBtn')?.addEventListener('click', () => {
+        alert("⭐ Terima kasih! Ulasan kamu sangat berharga.\n\nKamu bisa menulis ulasan di:\n- Instagram: DM @kroketfun.zy\n- Telegram: t.me/kroketfun\n\n⭐ Rate 2.5 Juta pembeli bahagia!");
+    });
+    
+    document.getElementById('viewReviewsBtn')?.addEventListener('click', () => {
+        alert("📝 500.000+ ULASAN\n\n⭐ 4.9 dari 2.5 Juta rating\n\n💬 Testimonial:\n\n'Kualitasnya luar biasa! Pengiriman cepat.' - ★★★★★\n'Rajutannya rapi banget, recomended!' - ★★★★★\n'Friendly seller, produk sesuai ekspektasi' - ★★★★★\n\nLihat lebih banyak di Instagram/Telegram kami!");
+    });
     
     // ========== FUNGSI FORMAT PESAN ==========
     function formatSingleMessage(product) {
@@ -231,7 +391,6 @@ Mohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷
             alert("❌ Username Instagram belum diatur di config!");
             return;
         }
-        // Copy pesan ke clipboard
         navigator.clipboard.writeText(message).then(() => {
             const igProfileUrl = `https://www.instagram.com/${IG_USERNAME}/`;
             window.open(igProfileUrl, '_blank');
@@ -327,7 +486,6 @@ Mohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷
         let totalEl = document.getElementById('cartTotalPrice');
         if (totalEl) totalEl.innerText = `Rp ${total.toLocaleString()}`;
         
-        // Event listeners untuk tombol qty
         document.querySelectorAll('.cart-qty-btn').forEach(btn => {
             btn.onclick = () => {
                 let idx = parseInt(btn.dataset.idx);
@@ -412,7 +570,6 @@ Mohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷
             grid.appendChild(card);
         });
         
-        // Event listeners untuk tombol
         document.querySelectorAll('.cart-btn').forEach(btn => {
             btn.onclick = () => {
                 let id = parseInt(btn.dataset.id);
@@ -447,29 +604,24 @@ Mohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷
             return;
         }
         
-        // Set Logo
         let logoImg = document.getElementById('logoImg');
         if (logoImg && CONFIG.LOGO_URL) logoImg.src = CONFIG.LOGO_URL;
         
-        // Set Store Info
         let storeName = document.getElementById('storeName');
         if (storeName) storeName.innerHTML = CONFIG.STORE_NAME;
         let storeTagline = document.getElementById('storeTagline');
         if (storeTagline) storeTagline.innerText = CONFIG.STORE_TAGLINE;
         
-        // Set Hero Image
         let heroImage = document.getElementById('heroImage');
         if (heroImage && CONFIG.HERO_IMAGES && CONFIG.HERO_IMAGES[0]) {
             heroImage.src = CONFIG.HERO_IMAGES[0];
         }
         
-        // Set Hero Captions
         let heroCaptions = document.getElementById('heroCaptions');
         if (heroCaptions && CONFIG.HERO_CAPTIONS) {
             heroCaptions.innerHTML = CONFIG.HERO_CAPTIONS.map(c => `<span><i class="fas ${c.icon}"></i> ${c.text}</span>`).join('');
         }
         
-        // Set Tutorial Steps
         let stepsGrid = document.getElementById('stepsGrid');
         if (stepsGrid && CONFIG.TUTORIAL_STEPS) {
             stepsGrid.innerHTML = CONFIG.TUTORIAL_STEPS.map(s => `
@@ -482,13 +634,11 @@ Mohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷
             `).join('');
         }
         
-        // Set Footer
         let footerText = document.getElementById('footerText');
         if (footerText) footerText.innerText = CONFIG.FOOTER_TEXT;
         let footerSubtext = document.getElementById('footerSubtext');
         if (footerSubtext) footerSubtext.innerText = CONFIG.FOOTER_SUBTEXT;
         
-        // Render Products
         renderProducts();
         loadCart();
     }
