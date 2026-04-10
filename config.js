@@ -9,7 +9,7 @@ const KANSHI_CONFIG = {
     
     INSTAGRAM_URL: "https://www.instagram.com/kroketfun.zy?igsh=aWh3dGNkazRobzB4",
     INSTAGRAM_DIRECT_ID: "17843367183524675",
-    TELEGRAM_USERNAME: "@silver_hold2",
+    TELEGRAM_USERNAME: "@kroketfun",
     EMAIL: "rian032008@gmail.com",
     
     DEFAULT_SHIPPING_ESTIMATE: "2-4 hari kerja",
