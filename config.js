@@ -22,13 +22,13 @@ const KANSHI_CONFIG = {
         {
             id: 1,
             name: "Custom Chibi Art",
-            desc: "Lukisan Digital, ukuran 1536 X 2048 px, style bebas",
-            price: "Rp 35.000 - 185.000",
+            desc: "Lukisan Digital, ukuran 1536 X 2048 px, ukuran 2048 x 2048 px, ukuran 1600 x 900 px, style bebas",
+            price: "Rp 35.000 - 195.000",
             category: "Fanart",
             img: "https://cdn.phototourl.com/free/2026-04-09-c92ea1ec-b18c-483e-a4d2-10380077d3e5.jpg",
             stock: 10,
             isAvailable: true,
-            shippingEstimate: "3-5 hari kerja"  // 👈 Estimasi khusus produk ini
+            shippingEstimate: "5-7 hari kerja"  // 👈 Estimasi khusus produk ini
         }
         // ========== CONTOH TAMBAH PRODUK BARU ==========
         // {
