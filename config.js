@@ -7,8 +7,8 @@ const KANSHI_CONFIG = {
     STORE_TAGLINE: "Give & Merchandise",
     STORE_DESCRIPTION: "Kerajinan tangan modern dengan sentuhan artistik",
     
-    INSTAGRAM_URL: "https://www.instagram.com/kroketfun.zy?igsh=aWh3dGNkazRobzB4",
-    INSTAGRAM_DIRECT_ID: "17843367183524675",
+    INSTAGRAM_URL: "https://www.instagram.com/kroketfun.zy",
+    INSTAGRAM_DIRECT_ID: "kroketfun.zy",
     TELEGRAM_USERNAME: "@kroketfun",
     EMAIL: "rian032008@gmail.com",
     
@@ -18,7 +18,7 @@ const KANSHI_CONFIG = {
         {
             id: 1,
             name: "Custom Chibi Art",
-            desc: "S&K CUSTOM CHIBI ART\n\n1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien.\n2. Maksimal 3 kali revisi (sketsa). Revisi tambahan kena biaya.\n3. Pengerjaan 5–7 hari kerja (tergantung antrean).\n4. File diberikan dalam format PNG melalui drive.\n5. Tidak menerima pembuatan NSFW & Mecha.",
+            desc: "S&K CUSTOM CHIBI ART\n\n1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien.\n2. Maksimal 3 kali revisi (sketsa). Revisi tambahan kena biaya.\n3. Pengerjaan 5–7 hari kerja.\n4. File diberikan dalam format PNG melalui drive.\n5. Tidak menerima pembuatan NSFW & Mecha.",
             price: "Rp 35.000 - 75.000",
             category: "Fanart",
             img: "https://cdn.phototourl.com/free/2026-04-09-c92ea1ec-b18c-483e-a4d2-10380077d3e5.jpg",
@@ -63,9 +63,9 @@ const KANSHI_CONFIG = {
     
     TUTORIAL_STEPS: [
         { number: 1, icon: "fa-hand-pointer", title: "Pilih Produk", description: "Klik tombol pada produk yang kamu inginkan." },
-        { number: 2, icon: "fa-clipboard-list", title: "Review Pesanan", description: "Cek detail produk & harga di Kartu Pembeli." },
-        { number: 3, icon: "fa-copy", title: "Salin Pesan", description: "Klik tombol Salin Pesan untuk menyalin teks pemesanan." },
-        { number: 4, icon: "fa-telegram", title: "Kirim ke Telegram/IG", description: "Pilih platform, paste pesan, lalu kirim." }
+        { number: 2, icon: "fa-cart-plus", title: "Tambah ke Keranjang", description: "Klik Tambah untuk memasukkan produk ke keranjang." },
+        { number: 3, icon: "fa-clipboard-list", title: "Review Pesanan", description: "Cek detail produk & harga di ringkasan." },
+        { number: 4, icon: "fa-telegram", title: "Kirim Pesan", description: "Pilih Telegram (auto terisi) atau IG (copy-paste)." }
     ],
     
     HERO_IMAGES: [
@@ -77,7 +77,8 @@ const KANSHI_CONFIG = {
     HERO_CAPTIONS: [
         { icon: "fa-feather-alt", text: "kerajinan yang bercerita" },
         { icon: "fa-hands-helping", text: "handmade dengan hati" },
-        { icon: "fa-telegram", text: "pesan via Telegram • teks otomatis" }
+        { icon: "fa-star", text: "4.9 dari 2.5 Juta rating" },
+        { icon: "fa-telegram", text: "pesan via Telegram • auto fill" }
     ],
     
     SHIPPING_ESTIMATE: "2-4 hari kerja",
@@ -117,5 +118,10 @@ Mohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷
     },
     
     FOOTER_TEXT: "© 2026 KanshiCraft | Setiap goresan & jahitan punya cerita",
-    FOOTER_SUBTEXT: "💬 Klik beli → salin pesan otomatis → buka Telegram/IG → tempel & kirim"
+    FOOTER_SUBTEXT: "⭐ 4.9 • 2.5 Juta rating • 500rb+ ulasan"
 };
+
+// Untuk kompatibilitas dengan Node.js (jika dibutuhkan)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = KANSHI_CONFIG;
+}
