@@ -28,9 +28,9 @@ const KANSHI_CONFIG = {
             img: "https://cdn.phototourl.com/free/2026-04-09-c92ea1ec-b18c-483e-a4d2-10380077d3e5.jpg",
             stock: 10,
             isAvailable: true,
-            shippingEstimate: "5-7 hari kerja ( Tergantung Antrian )"  // 👈 TAMBAHKAN INI - estimasi untuk produk ini
+            shippingEstimate: "3-5 hari kerja"  // 👈 Estimasi khusus produk ini
         }
-        // 👇 CONTOH TAMBAH PRODUK BARU DENGAN ESTIMASI BERBEDA
+        // ========== CONTOH TAMBAH PRODUK BARU ==========
         // {
         //     id: 2,
         //     name: "Boneka Rajut Kelinci",
@@ -40,18 +40,40 @@ const KANSHI_CONFIG = {
         //     img: "https://example.com/boneka.jpg",
         //     stock: 5,
         //     isAvailable: true,
-        //     shippingEstimate: "4-6 hari kerja"  // 👈 BISA DIATUR BERBEDA
+        //     shippingEstimate: "4-6 hari kerja"
         // },
         // {
         //     id: 3,
+        //     name: "Gantungan Kunci Akrilik",
+        //     desc: "Gantungan kunci custom design, bahan akrilik transparan",
+        //     price: "Rp 25.000",
+        //     category: "aksesoris",
+        //     img: "https://example.com/gantungan.jpg",
+        //     stock: 20,
+        //     isAvailable: true,
+        //     shippingEstimate: "2-3 hari kerja"
+        // },
+        // {
+        //     id: 4,
         //     name: "Lukisan Kanvas Abstrak",
-        //     desc: "Lukisan akrilik di kanvas 40x50cm",
+        //     desc: "Lukisan akrilik di kanvas 40x50cm, gaya modern",
         //     price: "Rp 250.000",
         //     category: "lukisan",
         //     img: "https://example.com/lukisan.jpg",
         //     stock: 3,
         //     isAvailable: true,
-        //     shippingEstimate: "7-10 hari kerja"  // 👈 ESTIMASI LEBIH LAMA
+        //     shippingEstimate: "7-10 hari kerja"
+        // },
+        // {
+        //     id: 5,
+        //     name: "Miniatur Rumah Kayu",
+        //     desc: "Miniatur rumah dari kayu jati, cocok untuk dekorasi",
+        //     price: "Rp 150.000",
+        //     category: "miniatur",
+        //     img: "https://example.com/miniatur.jpg",
+        //     stock: 8,
+        //     isAvailable: true,
+        //     shippingEstimate: "5-7 hari kerja"
         // }
     ],
     
@@ -74,19 +96,29 @@ const KANSHI_CONFIG = {
         { icon: "fa-instagram", text: "pesan via DM • teks otomatis" }
     ],
     
-    SHIPPING_ESTIMATE: "2-4 hari kerja",  // 👈 INI MASIH ADA (sebagai fallback)
+    SHIPPING_ESTIMATE: "2-4 hari kerja",  // fallback
     SHIPPING_COST_DEFAULT: "Sesuai tarif JNE / J&T",
     
-    // ========== FUNGSI PEMBUAT PESAN (SUDAH DIUPDATE) ==========
+    // ========== FUNGSI PEMBUAT PESAN (PESAN KE IG) ==========
     getMessageTemplate: function(product) {
-        const date = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+        const date = new Date().toLocaleDateString('id-ID', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        
+        // Mapping kategori
         let categoryLabel = "🎨 Lukisan/Ilustrasi";
         if (product.category === "boneka") categoryLabel = "🧸 Boneka Tangan";
         else if (product.category === "aksesoris") categoryLabel = "💍 Aksesoris";
         else if (product.category === "Fanart") categoryLabel = "🎨 Custom Fanart / Digital";
+        else if (product.category === "lukisan") categoryLabel = "🖼️ Lukisan";
+        else if (product.category === "miniatur") categoryLabel = "🏠 Miniatur";
         
-        // 👇 AMBIL ESTIMASI DARI PRODUK (jika ada) ATAU PAKAI DEFAULT
-        const shippingEst = product.shippingEstimate || this.DEFAULT_SHIPPING_ESTIMATE;
+        // Ambil estimasi dari produk (tanpa teks tambahan)
+        let shippingEst = product.shippingEstimate || this.DEFAULT_SHIPPING_ESTIMATE;
+        // Bersihkan dari teks dalam kurung seperti "(Tergantung Antrian)"
+        shippingEst = shippingEst.replace(/\(.*?\)/g, '').trim();
         
         return `✨ KARTU PEMBELI KANSHI ✨
 
@@ -110,6 +142,7 @@ Mohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷
     FOOTER_SUBTEXT: "💬 Klik beli → salin pesan otomatis → buka Instagram DM → tempel & kirim"
 };
 
+// Untuk kompatibilitas dengan Node.js (jika dibutuhkan)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = KANSHI_CONFIG;
 }
