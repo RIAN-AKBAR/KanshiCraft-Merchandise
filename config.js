@@ -2,7 +2,7 @@
 // KANSHICRAFT - MASTER CONFIGURATION FILE
 // ============================================
 const KANSHI_CONFIG = {
-    MAINTENANCE_MODE: false,
+    MAINTENANCE_MODE: true,
     MAINTENANCE_MESSAGE: "Kami sedang melakukan perbaikan dan peningkatan sistem",
     MAINTENANCE_ETA: "30",
     
