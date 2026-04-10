@@ -17,44 +17,44 @@ const KANSHI_CONFIG = {
     PRODUCTS: [
         {
             id: 1,
-            name: "Custom Chibi Art",
+            name: "✨ Custom Chibi Art",
             desc: "S&K CUSTOM CHIBI ART\n\n1. DP 50% di awal, lunas 50% sebelum file dikirim.\n2. Maksimal 3 kali revisi (sketsa).\n3. Pengerjaan 5–7 hari kerja.\n4. File diberikan dalam format PNG.\n5. Tidak menerima NSFW & Mecha.",
             price: "Rp 35.000 - 75.000",
             category: "Fanart",
-            img: "https://i.pinimg.com/736x/2e/6d/6a/2e6d6a0b1c4e8f9a2b3c4d5e6f7a8b9c.jpg",
+            img: "https://placehold.co/600x600/1a1a2e/e6bc91?text=Chibi+Art",
             stock: 10,
             isAvailable: true,
             shippingEstimate: "5-7 hari kerja"
         },
         {
             id: 2,
-            name: "Boneka Katsuki Bakugou",
+            name: "🧸 Boneka Katsuki Bakugou",
             desc: "Tinggi: ± 20 cm\nBahan: Benang katun berkualitas\nTeknik: Rajut manual 100% buatan tangan\n\n⚠️ Hindari pencucian mesin. Cukup lap dengan kain lembap.",
             price: "Rp 275.000",
             category: "boneka",
-            img: "https://i.pinimg.com/736x/3f/7e/8b/3f7e8b1a2c3d4e5f6a7b8c9d0e1f2a3b.jpg",
+            img: "https://placehold.co/600x600/1a1a2e/e6bc91?text=Bakugou+Doll",
             stock: 5,
             isAvailable: true,
             shippingEstimate: "3-5 hari kerja"
         },
         {
             id: 3,
-            name: "Custom PNGtuber",
+            name: "🎨 Custom PNGtuber",
             desc: "S&K CUSTOM PNGTUBER\n\n1. DP 50% di awal.\n2. Memiliki 4 ekspresi base default.\n3. Pengerjaan 7–14 hari kerja.\n4. File diberikan dalam format PNG.",
             price: "Rp 80.000 - 100.000",
             category: "Fanart",
-            img: "https://i.pinimg.com/736x/4a/8b/2c/4a8b2c3d4e5f6a7b8c9d0e1f2a3b4c5d.jpg",
+            img: "https://placehold.co/600x600/1a1a2e/e6bc91?text=PNGtuber",
             stock: 5,
             isAvailable: true,
             shippingEstimate: "7-14 hari kerja"
         },
         {
             id: 4,
-            name: "YCH Stiker",
+            name: "🏷️ YCH Stiker",
             desc: "S&K YCH STIKER\n\n1. DP 50% di awal.\n2. Tidak ada revisi karena base sudah disediakan.\n3. Pengerjaan 5-7 hari kerja.\n4. File diberikan dalam format PNG.",
             price: "Rp 50.000",
             category: "aksesoris",
-            img: "https://i.pinimg.com/736x/5b/9c/3d/5b9c3d4e5f6a7b8c9d0e1f2a3b4c5d6e.jpg",
+            img: "https://placehold.co/600x600/1a1a2e/e6bc91?text=YCH+Sticker",
             stock: 5,
             isAvailable: true,
             shippingEstimate: "5-7 hari kerja"
@@ -69,10 +69,10 @@ const KANSHI_CONFIG = {
     ],
     
     HERO_IMAGES: [
-        "https://i.pinimg.com/736x/6c/8d/3e/6c8d3e4f5a6b7c8d9e0f1a2b3c4d5e6f.jpg"
+        "https://placehold.co/1200x400/1a1a2e/e6bc91?text=KanshiCraft+Banner"
     ],
     
-    LOGO_URL: "https://i.pinimg.com/736x/1a/2b/3c/1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d.jpg",
+    LOGO_URL: "https://placehold.co/200x200/1a1a2e/e6bc91?text=KC",
     
     HERO_CAPTIONS: [
         { icon: "fa-feather-alt", text: "kerajinan yang bercerita" },
