@@ -3,666 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>KanshiCraft | Kerajinan Tangan Modern — Dark Theme</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <title>KanshiCraft | Kerajinan Tangan Modern</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0b0a0a;
-            color: #ece8e2;
-            scroll-behavior: smooth;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1e1b19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #6a5a4b;
-            border-radius: 10px;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-
-        .header {
-            padding: 24px 0;
-            border-bottom: 1px solid #2a2622;
-            background: rgba(11, 10, 10, 0.92);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-        .logo-img {
-            width: 52px;
-            height: 52px;
-            object-fit: cover;
-            border-radius: 20px;
-            background: #2b2520;
-            box-shadow: 0 6px 14px -6px rgba(0,0,0,0.5);
-            border: 1px solid #4a3e34;
-        }
-        .logo-text h1 {
-            font-size: 1.7rem;
-            font-weight: 600;
-            letter-spacing: -0.3px;
-            background: linear-gradient(135deg, #f3e3d3, #c9aa8a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .logo-text p {
-            font-size: 0.8rem;
-            color: #b7a58f;
-            letter-spacing: 0.3px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #e0d3c6;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-        .nav-links a:hover {
-            color: #e7bc91;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #0b0a0a; color: #ece8e2; scroll-behavior: smooth; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
         
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-            font-size: 1.4rem;
-            color: #e0d3c6;
-            transition: 0.2s;
-        }
-        .cart-icon:hover {
-            color: #e7bc91;
-        }
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -12px;
-            background: #e6bc91;
-            color: #1e1712;
-            font-size: 0.7rem;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 20px;
-            min-width: 18px;
-            text-align: center;
-        }
-
-        .hero-banner {
-            margin-top: 32px;
-            border-radius: 48px;
-            overflow: hidden;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6);
-            background: #0f0d0b;
-        }
-        .hero-banner img {
-            width: 100%;
-            min-height: 380px;
-            max-height: 580px;
-            object-fit: contain;
-            object-position: center center;
-            background: #0a0908;
-            display: block;
-        }
-        .hero-caption {
-            text-align: center;
-            margin-top: 24px;
-            margin-bottom: 16px;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            color: #bba98e;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .hero-caption span {
-            background: #201c18;
-            padding: 6px 18px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-        }
-
-        .tutorial-section {
-            background: #13100e;
-            border-radius: 40px;
-            padding: 32px 28px;
-            margin: 48px 0 32px;
-            border: 1px solid #2f2822;
-        }
-        .tutorial-title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 28px;
-            color: #e6bc91;
-        }
-        .tutorial-title i {
-            margin-right: 12px;
-        }
-        .steps-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 24px;
-        }
-        .step-card {
-            background: #1e1a17;
-            border-radius: 28px;
-            padding: 24px 20px;
-            flex: 1;
-            min-width: 180px;
-            text-align: center;
-            border: 1px solid #3a322b;
-            transition: transform 0.2s;
-        }
-        .step-card:hover {
-            transform: translateY(-5px);
-            border-color: #6b5542;
-        }
-        .step-number {
-            width: 48px;
-            height: 48px;
-            background: #e6bc91;
-            color: #1e1712;
-            border-radius: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin: 0 auto 16px;
-        }
-        .step-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-            color: #f1e2d4;
-        }
-        .step-card p {
-            font-size: 0.85rem;
-            color: #b6a28c;
-            line-height: 1.5;
-        }
-        .step-card i {
-            font-size: 1.8rem;
-            margin-bottom: 12px;
-            color: #e6bc91;
-        }
-
-        .section-title {
-            font-size: 1.9rem;
-            font-weight: 500;
-            margin: 56px 0 32px 0;
-            text-align: center;
-            letter-spacing: -0.2px;
-            position: relative;
-            color: #f2e5da;
-        }
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 70px;
-            height: 3px;
-            background: #9b7b5c;
-            margin: 12px auto 0;
-            border-radius: 4px;
-        }
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 36px 28px;
-            margin-bottom: 60px;
-        }
-        .product-card {
-            background: #161311;
-            border-radius: 32px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 28px -12px rgba(0,0,0,0.5);
-            border: 1px solid #2f2822;
-            position: relative;
-        }
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 28px 40px -14px rgba(0,0,0,0.7);
-            border-color: #6b5542;
-        }
-        .product-img {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
-            background: #2a231e;
-            transition: transform 0.5s;
-        }
-        .product-card:hover .product-img {
-            transform: scale(1.02);
-        }
-        .product-info {
-            padding: 22px 20px 24px;
-        }
-        .product-title {
-            font-size: 1.45rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-            color: #f1e2d4;
-        }
-        .product-desc {
-            font-size: 0.85rem;
-            color: #b6a28c;
-            margin: 8px 0 12px;
-            line-height: 1.4;
-            white-space: pre-line;
-        }
-        .price {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: #e6bc91;
-            margin: 12px 0 18px;
-        }
-        .stock-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            background: #2a231f;
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-bottom: 12px;
-            color: #b7a58f;
-        }
+        .header { padding: 24px 0; border-bottom: 1px solid #2a2622; background: rgba(11, 10, 10, 0.92); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .logo-area { display: flex; align-items: center; gap: 14px; }
+        .logo-img { width: 52px; height: 52px; object-fit: cover; border-radius: 20px; background: #2b2520; border: 1px solid #4a3e34; }
+        .logo-text h1 { font-size: 1.7rem; font-weight: 600; background: linear-gradient(135deg, #f3e3d3, #c9aa8a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo-text p { font-size: 0.8rem; color: #b7a58f; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #e0d3c6; font-weight: 500; }
+        .nav-links a:hover { color: #e7bc91; }
         
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-        .buy-ig-btn, .buy-tg-btn, .cart-btn {
-            flex: 1;
-            padding: 12px 0;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 44px;
-            cursor: pointer;
-            transition: 0.2s;
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            border: none;
-        }
-        .buy-ig-btn {
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-            color: white;
-        }
-        .buy-tg-btn {
-            background: #26A5E4;
-            color: white;
-        }
-        .cart-btn {
-            background: #2d2722;
-            color: #f2e5da;
-            border: 1px solid #4c3e33;
-        }
-        .buy-ig-btn:hover:not(:disabled), .buy-tg-btn:hover:not(:disabled), .cart-btn:hover:not(:disabled) {
-            transform: scale(0.98);
-            opacity: 0.9;
-        }
-        .buy-ig-btn:disabled, .buy-tg-btn:disabled, .cart-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .cart-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.85);
-            backdrop-filter: blur(12px);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .cart-modal-card {
-            background: #1e1a17;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            border-radius: 48px;
-            padding: 32px 28px;
-            box-shadow: 0 40px 60px rgba(0,0,0,0.6);
-            border: 1px solid #5c4a3a;
-            animation: fadeUp 0.3s ease;
-            overflow-y: auto;
-        }
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #3a322b;
-        }
-        .cart-header h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            color: #f2e2d2;
-        }
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: #b7a58f;
-        }
-        .cart-items {
-            max-height: 400px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #2f2822;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .cart-item-info {
-            flex: 2;
-            min-width: 120px;
-        }
-        .cart-item-title {
-            font-weight: 600;
-            color: #f1e2d4;
-        }
-        .cart-item-price {
-            font-size: 0.8rem;
-            color: #e6bc91;
-        }
-        .cart-item-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .cart-qty-btn {
-            background: #3b322c;
-            border: none;
-            width: 28px;
-            height: 28px;
-            border-radius: 20px;
-            cursor: pointer;
-            color: #e6bc91;
-            font-weight: bold;
-        }
-        .cart-item-qty {
-            min-width: 30px;
-            text-align: center;
-        }
-        .cart-item-total {
-            min-width: 80px;
-            text-align: right;
-            color: #e6bc91;
-            font-weight: 600;
-        }
-        .remove-item {
-            background: none;
-            border: none;
-            color: #b55a4a;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .cart-summary {
-            border-top: 2px solid #4a3e34;
-            padding-top: 20px;
-            margin-top: 10px;
-        }
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #f1e2d4;
-        }
-        .checkout-buttons {
-            display: flex;
-            gap: 12px;
-        }
-        .checkout-ig-btn, .checkout-tg-btn {
-            flex: 1;
-            padding: 14px;
-            border-radius: 44px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.9rem;
-            border: none;
-        }
-        .checkout-ig-btn {
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-            color: white;
-        }
-        .checkout-tg-btn {
-            background: #26A5E4;
-            color: white;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.85);
-            backdrop-filter: blur(12px);
-            justify-content: center;
-            align-items: center;
-            z-index: 1001;
-        }
-        .modal-card {
-            background: #1e1a17;
-            max-width: 500px;
-            width: 90%;
-            border-radius: 48px;
-            padding: 32px 28px 36px;
-            text-align: center;
-            box-shadow: 0 40px 60px rgba(0,0,0,0.6);
-            border: 1px solid #5c4a3a;
-            animation: fadeUp 0.3s ease;
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .modal-logo {
-            width: 70px;
-            height: 70px;
-            border-radius: 40px;
-            margin: 0 auto 16px;
-            object-fit: cover;
-            border: 2px solid #b4926e;
-        }
-        .modal-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 500;
-            margin-bottom: 12px;
-            color: #f2e2d2;
-        }
-        .order-summary {
-            background: #2a231f;
-            border-radius: 28px;
-            padding: 18px;
-            margin: 22px 0;
-            font-size: 0.95rem;
-            text-align: left;
-            border-left: 5px solid #c7a17a;
-            color: #ddd0c2;
-        }
-        .order-summary p {
-            margin: 8px 0;
-            display: flex;
-            justify-content: space-between;
-        }
-        .message-box {
-            background: #241f1b;
-            border-radius: 24px;
-            padding: 16px;
-            margin: 16px 0;
-            text-align: left;
-            border: 1px solid #423a32;
-        }
-        .message-box label {
-            font-size: 0.75rem;
-            color: #c7a17a;
-            display: block;
-            margin-bottom: 8px;
-        }
-        .message-text {
-            background: #0f0d0b;
-            padding: 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-family: monospace;
-            word-break: break-word;
-            color: #e6d5c4;
-            max-height: 150px;
-            overflow-y: auto;
-        }
-        .copy-btn-small {
-            background: #3b322c;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            margin-top: 10px;
-            cursor: pointer;
-            color: #e6bc91;
-        }
-        .modal-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        .confirm-ig-btn, .confirm-tg-btn, .cancel-btn {
-            padding: 12px 20px;
-            border-radius: 60px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 0.85rem;
-            border: none;
-        }
-        .confirm-ig-btn {
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-            color: white;
-        }
-        .confirm-tg-btn {
-            background: #26A5E4;
-            color: white;
-        }
-        .cancel-btn {
-            background: #3b322c;
-            color: #f0e0d0;
-        }
-        .confirm-ig-btn:hover, .confirm-tg-btn:hover {
-            transform: scale(0.98);
-            opacity: 0.9;
-        }
-        .cancel-btn:hover {
-            background: #5a4b3e;
-        }
-
-        footer {
-            margin-top: 70px;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid #2f2822;
-            color: #9c8b78;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 700px) {
-            .container {
-                padding: 0 20px;
-            }
-            .hero-banner img {
-                min-height: 220px;
-                max-height: 320px;
-            }
-            .steps-grid {
-                flex-direction: column;
-            }
-            .button-group {
-                flex-direction: column;
-            }
-            .checkout-buttons {
-                flex-direction: column;
-            }
-            .modal-buttons {
-                flex-direction: column;
-            }
-        }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.4rem; color: #e0d3c6; }
+        .cart-count { position: absolute; top: -8px; right: -12px; background: #e6bc91; color: #1e1712; font-size: 0.7rem; font-weight: bold; padding: 2px 6px; border-radius: 20px; }
         
-        .custom-toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #2d2722;
-            color: #f2e2d2;
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            z-index: 1200;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            font-weight: 500;
-            border-left: 3px solid #e6bc91;
-        }
+        .hero-banner { margin-top: 32px; border-radius: 48px; overflow: hidden; background: #0f0d0b; }
+        .hero-banner img { width: 100%; min-height: 380px; max-height: 580px; object-fit: contain; background: #0a0908; display: block; }
+        .hero-caption { text-align: center; margin-top: 24px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .hero-caption span { background: #201c18; padding: 6px 18px; border-radius: 40px; font-size: 0.8rem; }
+        
+        .tutorial-section { background: #13100e; border-radius: 40px; padding: 32px 28px; margin: 48px 0; border: 1px solid #2f2822; }
+        .tutorial-title { font-size: 1.6rem; font-weight: 600; text-align: center; margin-bottom: 28px; color: #e6bc91; }
+        .steps-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+        .step-card { background: #1e1a17; border-radius: 28px; padding: 24px 20px; flex: 1; min-width: 180px; text-align: center; border: 1px solid #3a322b; }
+        .step-number { width: 48px; height: 48px; background: #e6bc91; color: #1e1712; border-radius: 60px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 800; margin: 0 auto 16px; }
+        .step-card h4 { font-size: 1.2rem; margin-bottom: 12px; color: #f1e2d4; }
+        .step-card p { font-size: 0.85rem; color: #b6a28c; }
+        
+        .section-title { font-size: 1.9rem; font-weight: 500; margin: 56px 0 32px; text-align: center; color: #f2e5da; }
+        .section-title:after { content: ''; display: block; width: 70px; height: 3px; background: #9b7b5c; margin: 12px auto 0; border-radius: 4px; }
+        
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 36px 28px; margin-bottom: 60px; }
+        .product-card { background: #161311; border-radius: 32px; overflow: hidden; border: 1px solid #2f2822; }
+        .product-card:hover { transform: translateY(-8px); border-color: #6b5542; }
+        .product-img { width: 100%; height: 260px; object-fit: cover; background: #2a231e; }
+        .product-info { padding: 22px 20px 24px; }
+        .product-title { font-size: 1.45rem; font-weight: 600; color: #f1e2d4; }
+        .product-desc { font-size: 0.85rem; color: #b6a28c; margin: 8px 0 12px; white-space: pre-line; }
+        .price { font-weight: 700; font-size: 1.5rem; color: #e6bc91; margin: 12px 0 18px; }
+        .stock-badge { display: inline-block; font-size: 0.7rem; background: #2a231f; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+        
+        .button-group { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+        .buy-ig-btn, .buy-tg-btn, .cart-btn { flex: 1; padding: 12px 0; font-size: 0.85rem; font-weight: 600; border-radius: 44px; cursor: pointer; text-align: center; border: none; }
+        .buy-ig-btn { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: white; }
+        .buy-tg-btn { background: #26A5E4; color: white; }
+        .cart-btn { background: #2d2722; color: #f2e5da; border: 1px solid #4c3e33; }
+        
+        .cart-modal, .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); justify-content: center; align-items: center; z-index: 1000; }
+        .cart-modal-card, .modal-card { background: #1e1a17; max-width: 500px; width: 90%; border-radius: 48px; padding: 32px 28px; border: 1px solid #5c4a3a; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .close-cart { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #b7a58f; }
+        .cart-items { max-height: 400px; overflow-y: auto; margin-bottom: 20px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #2f2822; flex-wrap: wrap; gap: 10px; }
+        .cart-item-info { flex: 2; }
+        .cart-item-title { font-weight: 600; }
+        .cart-qty-btn { background: #3b322c; border: none; width: 28px; height: 28px; border-radius: 20px; cursor: pointer; }
+        .remove-item { background: none; border: none; color: #b55a4a; cursor: pointer; }
+        .cart-summary { border-top: 2px solid #4a3e34; padding-top: 20px; }
+        .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; }
+        .checkout-buttons { display: flex; gap: 12px; }
+        .checkout-ig-btn, .checkout-tg-btn { flex: 1; padding: 14px; border-radius: 44px; font-weight: 600; cursor: pointer; border: none; }
+        .checkout-ig-btn { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: white; }
+        .checkout-tg-btn { background: #26A5E4; color: white; }
+        
+        .order-summary { background: #2a231f; border-radius: 28px; padding: 18px; margin: 22px 0; border-left: 5px solid #c7a17a; }
+        .order-summary p { margin: 8px 0; display: flex; justify-content: space-between; }
+        .message-box { background: #241f1b; border-radius: 24px; padding: 16px; margin: 16px 0; }
+        .message-text { background: #0f0d0b; padding: 12px; border-radius: 20px; font-size: 0.8rem; font-family: monospace; max-height: 150px; overflow-y: auto; }
+        .copy-btn-small { background: #3b322c; border: none; padding: 6px 12px; border-radius: 30px; margin-top: 10px; cursor: pointer; }
+        .modal-buttons { display: flex; gap: 12px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+        .confirm-ig-btn, .confirm-tg-btn, .cancel-btn { padding: 12px 20px; border-radius: 60px; font-weight: 600; cursor: pointer; border: none; }
+        .confirm-ig-btn { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: white; }
+        .confirm-tg-btn { background: #26A5E4; color: white; }
+        .cancel-btn { background: #3b322c; color: #f0e0d0; }
+        
+        footer { margin-top: 70px; padding: 40px 0; text-align: center; border-top: 1px solid #2f2822; color: #9c8b78; font-size: 0.85rem; }
+        .custom-toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #2d2722; color: #f2e2d2; padding: 12px 24px; border-radius: 60px; z-index: 1200; }
+        
+        @media (max-width: 700px) { .container { padding: 0 20px; } .steps-grid, .button-group, .checkout-buttons { flex-direction: column; } }
     </style>
 </head>
 <body>
-
 <header class="header">
     <div class="container header-inner">
         <div class="logo-area">
-            <img class="logo-img" id="logoImg" src="" alt="Kanshi Logo">
+            <img class="logo-img" id="logoImg" src="" alt="Logo">
             <div class="logo-text">
-                <h1 id="storeName">KanshiCraft Store<span style="font-weight:300">.</span></h1>
+                <h1 id="storeName">KanshiCraft Store</h1>
                 <p id="storeTagline">Give & Merchandise</p>
             </div>
         </div>
@@ -680,54 +114,29 @@
 
 <main>
     <div class="container">
-        <div class="hero-banner">
-            <img id="heroImage" src="" alt="Kanshi Banner Full Logo">
-        </div>
+        <div class="hero-banner"><img id="heroImage" src="" alt="Banner"></div>
         <div class="hero-caption" id="heroCaptions"></div>
-
         <div class="tutorial-section" id="tutorial">
-            <div class="tutorial-title">
-                <i class="fab fa-instagram"></i> <i class="fab fa-telegram"></i> Tutorial Pemesanan
-            </div>
+            <div class="tutorial-title"><i class="fab fa-instagram"></i> <i class="fab fa-telegram"></i> Tutorial Pemesanan</div>
             <div class="steps-grid" id="stepsGrid"></div>
-            <p style="text-align: center; margin-top: 24px; font-size: 0.8rem; color: #b7a58f;">
-                <i class="fas fa-info-circle"></i> Tambahkan ke troli, lalu pilih checkout via Instagram atau Telegram!
-            </p>
+            <p style="text-align:center; margin-top:24px; font-size:0.8rem;"><i class="fas fa-info-circle"></i> Tambahkan ke troli, lalu checkout via IG atau Telegram!</p>
         </div>
-
         <div class="section-title" id="products">✦ Pilihan Karya Terbaik ✦</div>
         <div class="products-grid" id="productGrid"></div>
     </div>
 </main>
 
-<footer>
-    <div class="container">
-        <p id="footerText"></p>
-        <p style="margin-top: 8px;" id="footerSubtext"></p>
-    </div>
-</footer>
+<footer><div class="container"><p id="footerText"></p><p style="margin-top:8px;" id="footerSubtext"></p></div></footer>
 
 <div id="cartModal" class="cart-modal">
     <div class="cart-modal-card">
-        <div class="cart-header">
-            <h3><i class="fas fa-shopping-cart"></i> Keranjang Belanja</h3>
-            <button class="close-cart" id="closeCartBtn">&times;</button>
-        </div>
-        <div id="cartItemsContainer" class="cart-items">
-            <div class="empty-cart">Keranjang masih kosong 🛒</div>
-        </div>
-        <div class="cart-summary" id="cartSummary" style="display: none;">
-            <div class="cart-total">
-                <span>Total Belanja:</span>
-                <span id="cartTotalPrice">Rp 0</span>
-            </div>
+        <div class="cart-header"><h3><i class="fas fa-shopping-cart"></i> Keranjang</h3><button class="close-cart" id="closeCartBtn">&times;</button></div>
+        <div id="cartItemsContainer" class="cart-items"><div class="empty-cart">Keranjang kosong 🛒</div></div>
+        <div class="cart-summary" id="cartSummary" style="display:none;">
+            <div class="cart-total"><span>Total:</span><span id="cartTotalPrice">Rp 0</span></div>
             <div class="checkout-buttons">
-                <button class="checkout-ig-btn" id="checkoutIgBtn">
-                    <i class="fab fa-instagram"></i> Checkout via IG
-                </button>
-                <button class="checkout-tg-btn" id="checkoutTgBtn">
-                    <i class="fab fa-telegram"></i> Checkout via Telegram
-                </button>
+                <button class="checkout-ig-btn" id="checkoutIgBtn"><i class="fab fa-instagram"></i> IG</button>
+                <button class="checkout-tg-btn" id="checkoutTgBtn"><i class="fab fa-telegram"></i> Telegram</button>
             </div>
         </div>
     </div>
@@ -735,21 +144,17 @@
 
 <div id="orderModal" class="modal">
     <div class="modal-card">
-        <img class="modal-logo" id="modalLogo" src="" alt="logo">
-        <h3 id="modalTitle">🕊️ Checkout</h3>
+        <img class="modal-logo" id="modalLogo" src="" alt="logo" style="width:70px;height:70px;border-radius:40px;margin:0 auto 16px;object-fit:cover;">
+        <h3 id="modalTitle">Checkout</h3>
         <div class="order-summary" id="orderSummary"></div>
         <div class="message-box">
-            <label><i class="fas fa-comment-dots"></i> Pesanan siap kirim:</label>
+            <label>Pesanan siap kirim:</label>
             <div class="message-text" id="fullMessageText"></div>
-            <button class="copy-btn-small" id="copyMessageBtn"><i class="fas fa-copy"></i> 📋 Salin Pesan</button>
+            <button class="copy-btn-small" id="copyMessageBtn"><i class="fas fa-copy"></i> Salin Pesan</button>
         </div>
         <div class="modal-buttons">
-            <button class="confirm-ig-btn" id="confirmIgBtn" style="display: none;">
-                <i class="fab fa-instagram"></i> Buka IG & Tempel
-            </button>
-            <button class="confirm-tg-btn" id="confirmTgBtn" style="display: none;">
-                <i class="fab fa-telegram"></i> Buka Telegram & Tempel
-            </button>
+            <button class="confirm-ig-btn" id="confirmIgBtn" style="display:none;"><i class="fab fa-instagram"></i> Buka IG</button>
+            <button class="confirm-tg-btn" id="confirmTgBtn" style="display:none;"><i class="fab fa-telegram"></i> Buka Telegram</button>
             <button class="cancel-btn" id="cancelModalBtn">Kembali</button>
         </div>
     </div>
@@ -757,402 +162,165 @@
 
 <script src="config.js"></script>
 <script>
-    if (typeof KANSHI_CONFIG !== 'undefined') {
-        if (KANSHI_CONFIG.MAINTENANCE_MODE === true) {
-            window.location.href = 'maintenance.html?eta=' + encodeURIComponent(KANSHI_CONFIG.MAINTENANCE_ETA);
-        }
-    } else {
-        console.error('Config file not loaded properly');
-    }
-
-    let selectedProduct = null;
-    let currentMessage = "";
-    let currentPlatform = "ig";
     let CONFIG = typeof KANSHI_CONFIG !== 'undefined' ? KANSHI_CONFIG : null;
-    let cart = [];
+    let currentMessage = "", currentPlatform = "ig", cart = [];
     
-    const INSTA_DIRECT_URL = CONFIG ? `https://www.instagram.com/direct/t/${CONFIG.INSTAGRAM_DIRECT_ID}/` : "https://www.instagram.com/";
-    const TELEGRAM_URL = CONFIG ? `https://t.me/${CONFIG.TELEGRAM_USERNAME?.replace('@', '') || ''}` : "https://t.me/";
+    const INSTA_URL = CONFIG ? `https://www.instagram.com/direct/t/${CONFIG.INSTAGRAM_DIRECT_ID}/` : "https://instagram.com";
+    const TG_URL = CONFIG ? `https://t.me/${(CONFIG.TELEGRAM_USERNAME || "").replace("@","")}` : "https://t.me";
     
-    function loadCart() {
-        const savedCart = localStorage.getItem('kanshi_cart');
-        if (savedCart) {
-            cart = JSON.parse(savedCart);
-        }
-        updateCartUI();
-    }
-    
-    function saveCart() {
-        localStorage.setItem('kanshi_cart', JSON.stringify(cart));
-        updateCartUI();
-    }
+    function saveCart() { localStorage.setItem('kanshi_cart', JSON.stringify(cart)); updateCartUI(); }
+    function loadCart() { let saved = localStorage.getItem('kanshi_cart'); if(saved) cart = JSON.parse(saved); updateCartUI(); }
     
     function updateCartUI() {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const cartCount = document.getElementById('cartCount');
-        if (cartCount) cartCount.innerText = totalItems;
-        
-        const cartContainer = document.getElementById('cartItemsContainer');
-        const cartSummary = document.getElementById('cartSummary');
-        
-        if (cart.length === 0) {
-            if (cartContainer) cartContainer.innerHTML = '<div class="empty-cart">Keranjang masih kosong 🛒</div>';
-            if (cartSummary) cartSummary.style.display = 'none';
+        let totalItems = cart.reduce((s,i)=>s+i.quantity,0);
+        document.getElementById('cartCount').innerText = totalItems;
+        let container = document.getElementById('cartItemsContainer');
+        let summary = document.getElementById('cartSummary');
+        if(cart.length===0){
+            container.innerHTML = '<div class="empty-cart">Keranjang kosong 🛒</div>';
+            summary.style.display = 'none';
             return;
         }
-        
-        let total = 0;
-        let cartHtml = '';
-        cart.forEach((item, index) => {
-            const priceNumber = parseInt(item.price.replace(/[^0-9]/g, '')) || 0;
-            const itemTotal = priceNumber * item.quantity;
+        let total = 0, html = '';
+        cart.forEach((item,idx)=>{
+            let priceNum = parseInt(item.price.replace(/[^0-9]/g,'')) || 0;
+            let itemTotal = priceNum * item.quantity;
             total += itemTotal;
-            cartHtml += `
-                <div class="cart-item">
-                    <div class="cart-item-info">
-                        <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-price">${item.price}</div>
-                    </div>
-                    <div class="cart-item-actions">
-                        <button class="cart-qty-btn" data-index="${index}" data-delta="-1">-</button>
-                        <span class="cart-item-qty">${item.quantity}</span>
-                        <button class="cart-qty-btn" data-index="${index}" data-delta="1">+</button>
-                        <span class="cart-item-total">Rp ${itemTotal.toLocaleString()}</span>
-                        <button class="remove-item" data-index="${index}"><i class="fas fa-trash"></i></button>
+            html += `<div class="cart-item">
+                <div class="cart-item-info"><div class="cart-item-title">${item.name}</div><div>${item.price}</div></div>
+                <div><button class="cart-qty-btn" data-idx="${idx}" data-delta="-1">-</button> <span>${item.quantity}</span> <button class="cart-qty-btn" data-idx="${idx}" data-delta="1">+</button>
+                <span style="margin-left:10px;">Rp ${itemTotal.toLocaleString()}</span> <button class="remove-item" data-idx="${idx}"><i class="fas fa-trash"></i></button></div>
+            </div>`;
+        });
+        container.innerHTML = html;
+        summary.style.display = 'block';
+        document.getElementById('cartTotalPrice').innerText = `Rp ${total.toLocaleString()}`;
+        document.querySelectorAll('.cart-qty-btn').forEach(btn=>{
+            btn.onclick = ()=>{
+                let idx = parseInt(btn.dataset.idx), delta = parseInt(btn.dataset.delta);
+                let newQty = cart[idx].quantity + delta;
+                if(newQty<=0) cart.splice(idx,1);
+                else cart[idx].quantity = newQty;
+                saveCart();
+            };
+        });
+        document.querySelectorAll('.remove-item').forEach(btn=>{
+            btn.onclick = ()=>{ cart.splice(parseInt(btn.dataset.idx),1); saveCart(); };
+        });
+    }
+    
+    function addToCart(p){
+        let exist = cart.find(i=>i.id===p.id);
+        if(exist) exist.quantity++;
+        else cart.push({id:p.id, name:p.name, price:p.price, quantity:1, shippingEstimate:p.shippingEstimate});
+        saveCart();
+        alert(`✅ ${p.name} ditambahkan ke keranjang!`);
+    }
+    
+    function formatCartMsg(){
+        let date = new Date().toLocaleDateString('id-ID');
+        let items = '', total = 0;
+        cart.forEach(i=>{
+            let priceNum = parseInt(i.price.replace(/[^0-9]/g,'')) || 0;
+            total += priceNum * i.quantity;
+            items += `\n📌 ${i.name} x${i.quantity} = ${i.price}`;
+        });
+        let est = (cart[0]?.shippingEstimate || CONFIG.DEFAULT_SHIPPING_ESTIMATE || "2-4 hari kerja").replace(/\(.*?\)/g,'').trim();
+        return `✨ KARTU PEMBELI KANSHI ✨\n\n🌸 Halo Kak! Saya ingin memesan:${items}\n\n📦 Total: Rp ${total.toLocaleString()}\n⏱️ Estimasi: ${est}\n\n📅 ${date}\n\n— Pembeli dari ${CONFIG.STORE_NAME}`;
+    }
+    
+    function openCheckout(platform){
+        if(cart.length===0){ alert("Keranjang kosong!"); return; }
+        currentPlatform = platform;
+        currentMessage = formatCartMsg();
+        document.getElementById('modalTitle').innerHTML = platform==='ig' ? '<i class="fab fa-instagram"></i> Checkout IG' : '<i class="fab fa-telegram"></i> Checkout Telegram';
+        let itemsHtml='', total=0;
+        cart.forEach(i=>{
+            let priceNum = parseInt(i.price.replace(/[^0-9]/g,'')) || 0;
+            total += priceNum * i.quantity;
+            itemsHtml += `<p><span>${i.name} x${i.quantity}</span><span>${i.price}</span></p>`;
+        });
+        let est = (cart[0]?.shippingEstimate || CONFIG.DEFAULT_SHIPPING_ESTIMATE || "2-4 hari kerja").replace(/\(.*?\)/g,'').trim();
+        document.getElementById('orderSummary').innerHTML = `<p><span>🛒 Ringkasan</span></p>${itemsHtml}<p style="border-top:1px solid #4a3e34;padding-top:8px;"><span><strong>Total</strong></span><span><strong>Rp ${total.toLocaleString()}</strong></span></p><p><span>⭐ Estimasi</span><span><strong>${est}</strong></span></p>`;
+        document.getElementById('fullMessageText').innerText = currentMessage;
+        document.getElementById('confirmIgBtn').style.display = platform==='ig' ? 'flex' : 'none';
+        document.getElementById('confirmTgBtn').style.display = platform==='tg' ? 'flex' : 'none';
+        document.getElementById('orderModal').style.display = 'flex';
+    }
+    
+    function sendAndOpen(){
+        if(currentMessage){
+            navigator.clipboard.writeText(currentMessage).then(()=>{
+                let url = currentPlatform === 'ig' ? INSTA_URL : TG_URL;
+                window.open(url, '_blank');
+                alert(`✨ Pesan tersalin! Buka ${currentPlatform==='ig'?'IG':'Telegram'}, paste lalu kirim ✨`);
+                cart = []; saveCart();
+                document.getElementById('orderModal').style.display = 'none';
+            }).catch(()=>{ alert("Gagal menyalin, silakan salin manual."); });
+        }
+    }
+    
+    function renderProducts(){
+        let grid = document.getElementById('productGrid');
+        if(!grid || !CONFIG) return;
+        grid.innerHTML = '';
+        CONFIG.PRODUCTS.filter(p=>p.isAvailable).forEach(p=>{
+            let stockHtml = p.stock ? `<div class="stock-badge"><i class="fas fa-box"></i> Stok: ${p.stock}</div>` : '';
+            grid.innerHTML += `
+                <div class="product-card">
+                    <img class="product-img" src="${p.img}" onerror="this.src='https://placehold.co/500x500?text=KanshiCraft'">
+                    <div class="product-info">
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-desc">${p.desc}</div>
+                        ${stockHtml}
+                        <div class="price">${p.price}</div>
+                        <div class="button-group">
+                            <button class="cart-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Tambah</button>
+                            <button class="buy-ig-btn" data-id="${p.id}"><i class="fab fa-instagram"></i> IG</button>
+                            <button class="buy-tg-btn" data-id="${p.id}"><i class="fab fa-telegram"></i> TG</button>
+                        </div>
                     </div>
                 </div>
             `;
         });
-        
-        if (cartContainer) cartContainer.innerHTML = cartHtml;
-        if (cartSummary) cartSummary.style.display = 'block';
-        const totalElement = document.getElementById('cartTotalPrice');
-        if (totalElement) totalElement.innerText = `Rp ${total.toLocaleString()}`;
-        
-        document.querySelectorAll('.cart-qty-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const index = parseInt(btn.dataset.index);
-                const delta = parseInt(btn.dataset.delta);
-                updateQuantity(index, delta);
-            });
+        document.querySelectorAll('.cart-btn').forEach(btn=>{
+            btn.onclick = ()=>{ let p = CONFIG.PRODUCTS.find(x=>x.id==parseInt(btn.dataset.id)); if(p) addToCart(p); };
         });
-        document.querySelectorAll('.remove-item').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const index = parseInt(btn.dataset.index);
-                removeFromCart(index);
-            });
+        document.querySelectorAll('.buy-ig-btn').forEach(btn=>{
+            btn.onclick = ()=>{ let p = CONFIG.PRODUCTS.find(x=>x.id==parseInt(btn.dataset.id)); if(p){ cart = []; addToCart(p); openCheckout('ig'); } };
+        });
+        document.querySelectorAll('.buy-tg-btn').forEach(btn=>{
+            btn.onclick = ()=>{ let p = CONFIG.PRODUCTS.find(x=>x.id==parseInt(btn.dataset.id)); if(p){ cart = []; addToCart(p); openCheckout('tg'); } };
         });
     }
     
-    function updateQuantity(index, delta) {
-        if (cart[index]) {
-            const newQty = cart[index].quantity + delta;
-            if (newQty <= 0) {
-                cart.splice(index, 1);
-            } else {
-                cart[index].quantity = newQty;
-            }
-            saveCart();
-        }
-    }
-    
-    function removeFromCart(index) {
-        cart.splice(index, 1);
-        saveCart();
-    }
-    
-    function addToCart(product) {
-        const existing = cart.find(item => item.id === product.id);
-        if (existing) {
-            existing.quantity++;
-        } else {
-            cart.push({
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                quantity: 1,
-                shippingEstimate: product.shippingEstimate || CONFIG.DEFAULT_SHIPPING_ESTIMATE
-            });
-        }
-        saveCart();
-        showToast(`✅ ${product.name} ditambahkan ke keranjang!`);
-    }
-    
-    function formatCartMessage(platform = "ig") {
-        if (!CONFIG) return '';
-        
-        const date = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
-        let itemsList = '';
-        let total = 0;
-        
-        cart.forEach(item => {
-            const priceNumber = parseInt(item.price.replace(/[^0-9]/g, '')) || 0;
-            const itemTotal = priceNumber * item.quantity;
-            total += itemTotal;
-            itemsList += `\n📌 ${item.name} x${item.quantity} = ${item.price}`;
-        });
-        
-        const shippingEst = cart[0]?.shippingEstimate || CONFIG.DEFAULT_SHIPPING_ESTIMATE || "2-4 hari kerja";
-        const cleanShippingEst = shippingEst.replace(/\(.*?\)/g, '').trim();
-        
-        let message = `✨ KARTU PEMBELI KANSHI ✨\n\n`;
-        message += `🌸 Halo Kak! Saya ingin memesan:\n${itemsList}\n\n`;
-        message += `📦 Total: Rp ${total.toLocaleString()}\n`;
-        message += `⏱️ Estimasi Pengiriman: ${cleanShippingEst}\n\n`;
-        message += `📅 ${date}\n\n`;
-        message += `💫 "Setiap goresan & jahitan punya cerita."\n\n`;
-        message += `Mohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷\n\n`;
-        message += `— Pembeli dari ${CONFIG.STORE_NAME}`;
-        
-        return message;
-    }
-    
-    function initializePage() {
-        if (!CONFIG) return;
-        
-        const logoImg = document.getElementById('logoImg');
-        if (logoImg) logoImg.src = CONFIG.LOGO_URL;
-        
-        document.getElementById('storeName').innerHTML = CONFIG.STORE_NAME + '<span style="font-weight:300">.</span>';
+    function init(){
+        if(!CONFIG) return;
+        document.getElementById('logoImg').src = CONFIG.LOGO_URL;
+        document.getElementById('storeName').innerHTML = CONFIG.STORE_NAME;
         document.getElementById('storeTagline').innerText = CONFIG.STORE_TAGLINE;
-        
-        if (CONFIG.HERO_IMAGES && CONFIG.HERO_IMAGES.length > 0) {
-            document.getElementById('heroImage').src = CONFIG.HERO_IMAGES[0];
-        }
-        
-        const captionsContainer = document.getElementById('heroCaptions');
-        if (captionsContainer && CONFIG.HERO_CAPTIONS) {
-            captionsContainer.innerHTML = CONFIG.HERO_CAPTIONS.map(cap => 
-                `<span><i class="fas ${cap.icon}"></i> ${cap.text}</span>`
-            ).join('');
-        }
-        
-        const stepsContainer = document.getElementById('stepsGrid');
-        if (stepsContainer && CONFIG.TUTORIAL_STEPS) {
-            stepsContainer.innerHTML = CONFIG.TUTORIAL_STEPS.map(step => `
-                <div class="step-card">
-                    <div class="step-number">${step.number}</div>
-                    <i class="fas ${step.icon}"></i>
-                    <h4>${step.title}</h4>
-                    <p>${step.description}</p>
-                </div>
-            `).join('');
-        }
-        
+        if(CONFIG.HERO_IMAGES?.[0]) document.getElementById('heroImage').src = CONFIG.HERO_IMAGES[0];
+        if(CONFIG.HERO_CAPTIONS) document.getElementById('heroCaptions').innerHTML = CONFIG.HERO_CAPTIONS.map(c=>`<span><i class="fas ${c.icon}"></i> ${c.text}</span>`).join('');
+        if(CONFIG.TUTORIAL_STEPS) document.getElementById('stepsGrid').innerHTML = CONFIG.TUTORIAL_STEPS.map(s=>`<div class="step-card"><div class="step-number">${s.number}</div><i class="fas ${s.icon}"></i><h4>${s.title}</h4><p>${s.description}</p></div>`).join('');
         document.getElementById('footerText').innerText = CONFIG.FOOTER_TEXT;
         document.getElementById('footerSubtext').innerText = CONFIG.FOOTER_SUBTEXT;
         document.getElementById('modalLogo').src = CONFIG.LOGO_URL;
-        
         renderProducts();
         loadCart();
     }
     
-    function renderProducts() {
-        const grid = document.getElementById("productGrid");
-        if (!grid || !CONFIG) return;
-        
-        const availableProducts = CONFIG.PRODUCTS.filter(p => p.isAvailable !== false);
-        
-        grid.innerHTML = "";
-        availableProducts.forEach(prod => {
-            const card = document.createElement("div");
-            card.className = "product-card";
-            
-            const stockHtml = prod.stock ? `<div class="stock-badge"><i class="fas fa-box"></i> Stok: ${prod.stock}</div>` : '';
-            
-            card.innerHTML = `
-                <img class="product-img" src="${prod.img}" alt="${prod.name}" loading="lazy" onerror="this.src='https://placehold.co/500x500?text=KanshiCraft'">
-                <div class="product-info">
-                    <div class="product-title">${prod.name}</div>
-                    <div class="product-desc">${prod.desc}</div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                        ${stockHtml}
-                    </div>
-                    <div class="price">${prod.price}</div>
-                    <div class="button-group">
-                        <button class="cart-btn" data-id="${prod.id}">
-                            <i class="fas fa-cart-plus"></i> Tambah
-                        </button>
-                        <button class="buy-ig-btn" data-id="${prod.id}" data-platform="ig" ${prod.stock === 0 ? 'disabled' : ''}>
-                            <i class="fab fa-instagram"></i> IG
-                        </button>
-                        <button class="buy-tg-btn" data-id="${prod.id}" data-platform="tg" ${prod.stock === 0 ? 'disabled' : ''}>
-                            <i class="fab fa-telegram"></i> TG
-                        </button>
-                    </div>
-                </div>
-            `;
-            grid.appendChild(card);
-        });
-        
-        document.querySelectorAll(".cart-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                const id = parseInt(btn.getAttribute("data-id"));
-                const product = CONFIG.PRODUCTS.find(p => p.id === id);
-                if (product && product.isAvailable !== false) addToCart(product);
-            });
-        });
-        
-        document.querySelectorAll(".buy-ig-btn:not(:disabled)").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                const id = parseInt(btn.getAttribute("data-id"));
-                const product = CONFIG.PRODUCTS.find(p => p.id === id);
-                if (product && product.isAvailable !== false) {
-                    cart = [];
-                    saveCart();
-                    addToCart(product);
-                    openCheckoutModal("ig");
-                }
-            });
-        });
-        
-        document.querySelectorAll(".buy-tg-btn:not(:disabled)").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                const id = parseInt(btn.getAttribute("data-id"));
-                const product = CONFIG.PRODUCTS.find(p => p.id === id);
-                if (product && product.isAvailable !== false) {
-                    cart = [];
-                    saveCart();
-                    addToCart(product);
-                    openCheckoutModal("tg");
-                }
-            });
-        });
-    }
+    document.getElementById('copyMessageBtn')?.addEventListener('click',()=>{ if(currentMessage) navigator.clipboard.writeText(currentMessage).then(()=>alert("✅ Pesan disalin!")); });
+    document.getElementById('confirmIgBtn')?.addEventListener('click', sendAndOpen);
+    document.getElementById('confirmTgBtn')?.addEventListener('click', sendAndOpen);
+    document.getElementById('cancelModalBtn')?.addEventListener('click', ()=>document.getElementById('orderModal').style.display='none');
+    document.getElementById('cartIcon')?.addEventListener('click', ()=>document.getElementById('cartModal').style.display='flex');
+    document.getElementById('closeCartBtn')?.addEventListener('click', ()=>document.getElementById('cartModal').style.display='none');
+    document.getElementById('checkoutIgBtn')?.addEventListener('click', ()=>{ document.getElementById('cartModal').style.display='none'; openCheckout('ig'); });
+    document.getElementById('checkoutTgBtn')?.addEventListener('click', ()=>{ document.getElementById('cartModal').style.display='none'; openCheckout('tg'); });
+    window.onclick = (e)=>{ if(e.target===document.getElementById('orderModal')) document.getElementById('orderModal').style.display='none'; if(e.target===document.getElementById('cartModal')) document.getElementById('cartModal').style.display='none'; };
     
-    function openCheckoutModal(platform = "ig") {
-        if (cart.length === 0) {
-            showToast("Keranjang masih kosong! Tambahkan produk dulu ya.");
-            return;
-        }
-        
-        currentPlatform = platform;
-        currentMessage = formatCartMessage(platform);
-        
-        const modal = document.getElementById("orderModal");
-        const modalTitle = document.getElementById("modalTitle");
-        const summaryDiv = document.getElementById("orderSummary");
-        const confirmIgBtn = document.getElementById("confirmIgBtn");
-        const confirmTgBtn = document.getElementById("confirmTgBtn");
-        
-        if (platform === "ig") {
-            modalTitle.innerHTML = '<i class="fab fa-instagram"></i> Checkout via Instagram';
-            confirmIgBtn.style.display = "flex";
-            confirmTgBtn.style.display = "none";
-        } else {
-            modalTitle.innerHTML = '<i class="fab fa-telegram"></i> Checkout via Telegram';
-            confirmIgBtn.style.display = "none";
-            confirmTgBtn.style.display = "flex";
-        }
-        
-        let itemsHtml = '';
-        let total = 0;
-        cart.forEach(item => {
-            const priceNumber = parseInt(item.price.replace(/[^0-9]/g, '')) || 0;
-            const itemTotal = priceNumber * item.quantity;
-            total += itemTotal;
-            itemsHtml += `<p><span>${item.name} x${item.quantity}</span><span>${item.price}</span></p>`;
-        });
-        const shippingEst = cart[0]?.shippingEstimate || CONFIG.DEFAULT_SHIPPING_ESTIMATE || "2-4 hari kerja";
-        const cleanShippingEst = shippingEst.replace(/\(.*?\)/g, '').trim();
-        
-        summaryDiv.innerHTML = `
-            <p><span>🛒 Ringkasan Pesanan</span><span></span></p>
-            ${itemsHtml}
-            <p style="border-top: 1px solid #4a3e34; margin-top: 8px; padding-top: 8px;"><span><strong>Total</strong></span><span><strong>Rp ${total.toLocaleString()}</strong></span></p>
-            <p><span>⭐ Estimasi Pengiriman</span><span><strong>${cleanShippingEst}</strong></span></p>
-        `;
-        document.getElementById("fullMessageText").innerText = currentMessage;
-        modal.style.display = "flex";
-    }
-    
-    function openPlatformAndSend() {
-        if (currentMessage) {
-            navigator.clipboard.writeText(currentMessage).then(() => {
-                let url = currentPlatform === "ig" ? INSTA_DIRECT_URL : TELEGRAM_URL;
-                window.open(url, '_blank');
-                let platformName = currentPlatform === "ig" ? "Instagram" : "Telegram";
-                showToast(`✨ Pesan tersalin! Buka ${platformName}, paste lalu kirim ✨`);
-                cart = [];
-                saveCart();
-                closeModal();
-            }).catch(() => {
-                let url = currentPlatform === "ig" ? INSTA_DIRECT_URL : TELEGRAM_URL;
-                window.open(url, '_blank');
-                alert("Pesan sudah siap. Silakan salin manual:\n\n" + currentMessage);
-            });
-        } else {
-            let url = currentPlatform === "ig" ? INSTA_DIRECT_URL : TELEGRAM_URL;
-            window.open(url, '_blank');
-        }
-        closeModal();
-    }
-    
-    function showToast(msg) {
-        const existing = document.querySelector('.custom-toast');
-        if(existing) existing.remove();
-        const toast = document.createElement('div');
-        toast.className = 'custom-toast';
-        toast.innerHTML = `<i class="fas fa-shopping-cart" style="margin-right: 10px;"></i> ${msg}`;
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
-    }
-    
-    function closeModal() {
-        const modal = document.getElementById("orderModal");
-        if(modal) modal.style.display = "none";
-        selectedProduct = null;
-        currentMessage = "";
-    }
-    
-    function closeCartModal() {
-        const cartModal = document.getElementById("cartModal");
-        if(cartModal) cartModal.style.display = "none";
-    }
-    
-    document.getElementById("copyMessageBtn")?.addEventListener("click", () => {
-        if (currentMessage) {
-            navigator.clipboard.writeText(currentMessage).then(() => {
-                showToast("✅ Pesan sudah disalin! Sekarang buka platform tujuan dan paste.");
-            }).catch(() => {
-                alert("Gagal menyalin, silakan salin manual.");
-            });
-        }
-    });
-    
-    document.getElementById("confirmIgBtn")?.addEventListener("click", openPlatformAndSend);
-    document.getElementById("confirmTgBtn")?.addEventListener("click", openPlatformAndSend);
-    document.getElementById("cancelModalBtn")?.addEventListener("click", closeModal);
-    document.getElementById("cartIcon")?.addEventListener("click", () => {
-        document.getElementById("cartModal").style.display = "flex";
-    });
-    document.getElementById("closeCartBtn")?.addEventListener("click", closeCartModal);
-    document.getElementById("checkoutIgBtn")?.addEventListener("click", () => {
-        closeCartModal();
-        openCheckoutModal("ig");
-    });
-    document.getElementById("checkoutTgBtn")?.addEventListener("click", () => {
-        closeCartModal();
-        openCheckoutModal("tg");
-    });
-    
-    window.addEventListener("click", (e) => {
-        const modal = document.getElementById("orderModal");
-        const cartModal = document.getElementById("cartModal");
-        if (e.target === modal) closeModal();
-        if (e.target === cartModal) closeCartModal();
-    });
-    
-    if (typeof CONFIG !== 'undefined') {
-        initializePage();
-    } else {
-        window.addEventListener('load', () => {
-            if (typeof KANSHI_CONFIG !== 'undefined') {
-                CONFIG = KANSHI_CONFIG;
-                initializePage();
-            }
-        });
-    }
+    if(CONFIG) init();
+    else window.addEventListener('load',()=>{ if(window.KANSHI_CONFIG){ CONFIG=KANSHI_CONFIG; init(); } });
 </script>
 </body>
 </html>
