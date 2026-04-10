@@ -39,19 +39,30 @@ const KANSHI_CONFIG = {
             img: "canvas.com",
             stock: 5,
             isAvailable: true,
-            shippingEstimate: "2-5 hari kerja"  // 👈 Estimasi khusus produk ini
+            shippingEstimate: "3-5 hari kerja"  // 👈 Estimasi khusus produk ini
         },
         {
             id: 3,
             name: "Custom PNGtuber",
-            desc: "S&K CUSTOM PNGTUBER <br> <br> 1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien. <br> 2. Memiliki 4 ekspresi. <br> 3. Pengerjaan 5–10 hari kerja (tergantung jumlah ekspresi dan kompleksitas aksesori). <br> 4. File diberikan dalam format PNG melalui drive. <br> 5. Tidak menerima pembuatan NSFW & Mecha. <br> 6. Maksimal 3 kali revisi untuk seluruh aset (sketsa wajah, ekspresi, aksesori). Revisi tambahan dikenakan biaya.",
-            price: "Rp 100.000 - 120.000",
+            desc: "S&K CUSTOM PNGTUBER <br> <br> 1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien. <br> 2. Memiliki 4 ekspresi base default. <br> 3. Pengerjaan 7–14 hari kerja (tergantung jumlah ekspresi dan kompleksitas aksesori). <br> 4. File diberikan dalam format PNG melalui drive.",
+            price: "Rp 80.000 - 100.000",
             category: "Live Streaming",
             img: "canvas.com",
             stock: 5,
             isAvailable: true,
-            shippingEstimate: "5-10 hari kerja"  // 👈 Estimasi khusus produk ini
-        }
+            shippingEstimate: "7-14 hari kerja"  // 👈 Estimasi khusus produk ini
+        },
+        {
+            id: 3,
+            name: "YCH Stiker",
+            desc: "S&K YCH STIKER <br> <br> 1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien. <br> 2. Tidak ada revisi karena base sudah disediakan. <br> 3. Pengerjaan 5-7 hari kerja (tergantung antrian). <br> 4. File diberikan dalam format PNG melalui drive.",
+            price: "Rp 50.000",
+            category: "Stiker",
+            img: "canvas.com",
+            stock: 5,
+            isAvailable: true,
+            shippingEstimate: "5-7 hari kerja"  // 👈 Estimasi khusus produk ini
+        },
         // ========== CONTOH TAMBAH PRODUK BARU ==========
         // {
         //     id: 2,
