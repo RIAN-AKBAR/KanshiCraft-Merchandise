@@ -40,6 +40,17 @@ const KANSHI_CONFIG = {
             stock: 5,
             isAvailable: true,
             shippingEstimate: "2-5 hari kerja"  // 👈 Estimasi khusus produk ini
+        },
+        {
+            id: 3,
+            name: "Custom PNGtuber",
+            desc: "S&K CUSTOM PNGTUBER <br> <br> 1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien. <br> 2. Memiliki 4 ekspresi. <br> 3. Pengerjaan 5–10 hari kerja (tergantung jumlah ekspresi dan kompleksitas aksesori). <br> 4. File diberikan dalam format PNG melalui drive. <br> 5. Tidak menerima pembuatan NSFW & Mecha. <br> 6. Maksimal 3 kali revisi untuk seluruh aset (sketsa wajah, ekspresi, aksesori). Revisi tambahan dikenakan biaya.",
+            price: "Rp 275.000",
+            category: "Give & Merchandise",
+            img: "canvas.com",
+            stock: 5,
+            isAvailable: true,
+            shippingEstimate: "2-5 hari kerja"  // 👈 Estimasi khusus produk ini
         }
         // ========== CONTOH TAMBAH PRODUK BARU ==========
         // {
