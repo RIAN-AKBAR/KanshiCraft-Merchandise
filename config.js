@@ -29,6 +29,17 @@ const KANSHI_CONFIG = {
             stock: 10,
             isAvailable: true,
             shippingEstimate: "5-7 hari kerja"  // 👈 Estimasi khusus produk ini
+        },
+        {
+            id: 2,
+            name: "Boneka Katsuki Bakugou",
+            desc: "Boneka rajutan tangan asli <br> Tinggi: ± 20 cm (ukuran pas untuk digenggam, dipajang di meja kerja, atau menemani tidurmu) <br> Bahan: Benang katun berkualitas (lembut, tidak mudah kusut, dan aman untuk semua usia) & dakron sebagai pengisi (padat namun tetap empuk) <br> Teknik: Rajut manual dengan tusuk rapat – 100% buatan tangan, bukan produksi mesin <br> <br> ⚠️ Hindari pencucian mesin. Cukup lap dengan kain lembap dan keringkan di tempat teduh. Jangan direndam terlalu lama agar bentuknya tetap prima. ⚠️",
+            price: "Rp 275.000",
+            category: "Give & Merchandise",
+            img: "canvas.com",
+            stock: 5,
+            isAvailable: true,
+            shippingEstimate: "2-5 hari kerja"  // 👈 Estimasi khusus produk ini
         }
         // ========== CONTOH TAMBAH PRODUK BARU ==========
         // {
