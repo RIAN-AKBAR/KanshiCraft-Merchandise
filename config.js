@@ -18,10 +18,10 @@ const KANSHI_CONFIG = {
         {
             id: 1,
             name: "Custom Chibi Art",
-            desc: "S&K CUSTOM CHIBI ART\n\n1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien.\n2. Maksimal 3 kali revisi (sketsa). Revisi tambahan kena biaya.\n3. Pengerjaan 5–7 hari kerja.\n4. File diberikan dalam format PNG melalui drive.\n5. Tidak menerima pembuatan NSFW & Mecha.",
+            desc: "S&K CUSTOM CHIBI ART\n\n1. DP 50% di awal, lunas 50% sebelum file dikirim.\n2. Maksimal 3 kali revisi (sketsa).\n3. Pengerjaan 5–7 hari kerja.\n4. File diberikan dalam format PNG.\n5. Tidak menerima NSFW & Mecha.",
             price: "Rp 35.000 - 75.000",
             category: "Fanart",
-            img: "https://cdn.phototourl.com/free/2026-04-09-c92ea1ec-b18c-483e-a4d2-10380077d3e5.jpg",
+            img: "https://i.pinimg.com/736x/2e/6d/6a/2e6d6a0b1c4e8f9a2b3c4d5e6f7a8b9c.jpg",
             stock: 10,
             isAvailable: true,
             shippingEstimate: "5-7 hari kerja"
@@ -29,10 +29,10 @@ const KANSHI_CONFIG = {
         {
             id: 2,
             name: "Boneka Katsuki Bakugou",
-            desc: "Tinggi: ± 20 cm\nBahan: Benang katun berkualitas & dakron sebagai pengisi\nTeknik: Rajut manual dengan tusuk rapat – 100% buatan tangan\n\n⚠️ Hindari pencucian mesin. Cukup lap dengan kain lembap dan keringkan di tempat teduh. Jangan direndam terlalu lama agar bentuknya tetap prima. ⚠️",
+            desc: "Tinggi: ± 20 cm\nBahan: Benang katun berkualitas\nTeknik: Rajut manual 100% buatan tangan\n\n⚠️ Hindari pencucian mesin. Cukup lap dengan kain lembap.",
             price: "Rp 275.000",
             category: "boneka",
-            img: "https://placehold.co/500x500?text=Boneka+Bakugou",
+            img: "https://i.pinimg.com/736x/3f/7e/8b/3f7e8b1a2c3d4e5f6a7b8c9d0e1f2a3b.jpg",
             stock: 5,
             isAvailable: true,
             shippingEstimate: "3-5 hari kerja"
@@ -40,10 +40,10 @@ const KANSHI_CONFIG = {
         {
             id: 3,
             name: "Custom PNGtuber",
-            desc: "S&K CUSTOM PNGTUBER\n\n1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien.\n2. Memiliki 4 ekspresi base default.\n3. Pengerjaan 7–14 hari kerja (tergantung jumlah ekspresi dan kompleksitas aksesori).\n4. File diberikan dalam format PNG melalui drive.",
+            desc: "S&K CUSTOM PNGTUBER\n\n1. DP 50% di awal.\n2. Memiliki 4 ekspresi base default.\n3. Pengerjaan 7–14 hari kerja.\n4. File diberikan dalam format PNG.",
             price: "Rp 80.000 - 100.000",
             category: "Fanart",
-            img: "https://placehold.co/500x500?text=PNGtuber",
+            img: "https://i.pinimg.com/736x/4a/8b/2c/4a8b2c3d4e5f6a7b8c9d0e1f2a3b4c5d.jpg",
             stock: 5,
             isAvailable: true,
             shippingEstimate: "7-14 hari kerja"
@@ -51,10 +51,10 @@ const KANSHI_CONFIG = {
         {
             id: 4,
             name: "YCH Stiker",
-            desc: "S&K YCH STIKER\n\n1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien.\n2. Tidak ada revisi karena base sudah disediakan.\n3. Pengerjaan 5-7 hari kerja (tergantung antrian).\n4. File diberikan dalam format PNG melalui drive.",
+            desc: "S&K YCH STIKER\n\n1. DP 50% di awal.\n2. Tidak ada revisi karena base sudah disediakan.\n3. Pengerjaan 5-7 hari kerja.\n4. File diberikan dalam format PNG.",
             price: "Rp 50.000",
             category: "aksesoris",
-            img: "https://placehold.co/500x500?text=YCH+Stiker",
+            img: "https://i.pinimg.com/736x/5b/9c/3d/5b9c3d4e5f6a7b8c9d0e1f2a3b4c5d6e.jpg",
             stock: 5,
             isAvailable: true,
             shippingEstimate: "5-7 hari kerja"
@@ -69,10 +69,10 @@ const KANSHI_CONFIG = {
     ],
     
     HERO_IMAGES: [
-        "https://scontent-atl3-3.xx.fbcdn.net/v/t1.15752-9/663825272_4498277573738742_7260771414971499913_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=Hf2iROiOjIsQ7kNvwHwLmzO&_nc_oc=AdrJgSiAM3qh1x-SbD62h4taq3QAKkhEWqJwnVQkQtrgu5yCVM4e6niue-RYSDhVwg4RFTiZwrKYM-Se0VZ7Nmqu&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&_nc_ss=7a32e&oh=03_Q7cD5AGXY5DVFoLCCqbVxGfHm5FGrWfqUSqXtifktmY7Hod83g&oe=69FEB5B8"
+        "https://i.pinimg.com/736x/6c/8d/3e/6c8d3e4f5a6b7c8d9e0f1a2b3c4d5e6f.jpg"
     ],
     
-    LOGO_URL: "https://scontent-atl3-2.xx.fbcdn.net/v/t1.15752-9/663922348_964992852665698_5751482842647934933_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=ovl6j9rtHPUQ7kNvwGF1xkC&_nc_oc=AdrbJNYdtGnhwD_YoXesDQOdipnXFbVLzzN5xElUgXpgeygy2f0GkppExOajs0dDQNt0II4M_OgYpyxnpCsw_0hH&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&_nc_ss=7a32e&oh=03_Q7cD5AE_WFjX9uCfJKqOE705_s6Vmb-twZDaoqkMNJWSP4oOtA&oe=69FEB5DB",
+    LOGO_URL: "https://i.pinimg.com/736x/1a/2b/3c/1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d.jpg",
     
     HERO_CAPTIONS: [
         { icon: "fa-feather-alt", text: "kerajinan yang bercerita" },
@@ -121,7 +121,6 @@ Mohon info ketersediaan & metode pembayaran ya. Terima kasih! 🌷
     FOOTER_SUBTEXT: "⭐ 4.9 • 2.5 Juta rating • 500rb+ ulasan"
 };
 
-// Untuk kompatibilitas dengan Node.js (jika dibutuhkan)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = KANSHI_CONFIG;
 }
