@@ -165,7 +165,7 @@
             </div>
         </div>
         
-        <div class="hero-banner"><img id="heroImage" src="" alt="Banner" onerror="this.src='https://placehold.co/1200x400/1a1a2e/e6bc91?text=KanshiCraft+Banner'"></div>
+        <div class="hero-banner"><img id="heroImage" src="" alt="Banner" onerror="this.src='https://picsum.photos/id/104/1200/400'"></div>
         <div class="hero-caption" id="heroCaptions"></div>
         
         <div class="tutorial-section">
@@ -195,7 +195,14 @@
 <script src="config.js"></script>
 <script>
     (function(){
-        let CONFIG = window.KANSHI_CONFIG || null;
+        // Cek apakah CONFIG ada
+        if (typeof KANSHI_CONFIG === 'undefined') {
+            console.error("KANSHI_CONFIG tidak ditemukan! Pastikan file config.js sudah benar.");
+            document.getElementById('productGrid').innerHTML = '<p style="text-align:center;color:red;padding:40px;">❌ Error: File config.js tidak terbaca. Pastikan file config.js berada di folder yang sama dengan index.html</p>';
+            return;
+        }
+        
+        let CONFIG = KANSHI_CONFIG;
         let cart = [];
         let currentCategory = "all";
         let currentSearch = "";
@@ -318,10 +325,10 @@
             grid.innerHTML = '';
             products.forEach(p=>{
                 let stockHtml = p.stock ? `<div class="stock-badge"><i class="fas fa-box"></i> Stok: ${p.stock}</div>` : '';
-                let imgUrl = p.img || 'https://placehold.co/600x600/1a1a2e/e6bc91?text=KanshiCraft';
+                let imgUrl = p.img || 'https://picsum.photos/id/100/400/400';
                 let card = document.createElement('div');
                 card.className = 'product-card';
-                card.innerHTML = `<img class="product-img" src="${imgUrl}" onerror="this.src='https://placehold.co/600x600/1a1a2e/e6bc91?text=KanshiCraft'"><div class="product-info"><div class="product-title">${p.name}</div><div class="product-desc">${p.desc || ''}</div>${stockHtml}<div class="price">${p.price}</div><div class="button-group"><button class="cart-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Tambah</button><button class="buy-ig-btn" data-id="${p.id}"><i class="fab fa-instagram"></i> IG</button><button class="buy-tg-btn" data-id="${p.id}"><i class="fab fa-telegram"></i> TG</button></div></div>`;
+                card.innerHTML = `<img class="product-img" src="${imgUrl}" onerror="this.src='https://picsum.photos/id/100/400/400'"><div class="product-info"><div class="product-title">${p.name}</div><div class="product-desc">${p.desc || ''}</div>${stockHtml}<div class="price">${p.price}</div><div class="button-group"><button class="cart-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Tambah</button><button class="buy-ig-btn" data-id="${p.id}"><i class="fab fa-instagram"></i> IG</button><button class="buy-tg-btn" data-id="${p.id}"><i class="fab fa-telegram"></i> TG</button></div></div>`;
                 grid.appendChild(card);
             });
             document.querySelectorAll('.cart-btn').forEach(btn=>{ btn.onclick = ()=>{ let p = allProducts.find(x=>x.id==btn.dataset.id); if(p) addToCart(p); }; });
@@ -363,12 +370,12 @@
         function init(){
             if(!CONFIG){
                 let grid = document.getElementById('productGrid');
-                if(grid) grid.innerHTML = '<p style="text-align:center;color:red;">Error: Config tidak ditemukan.</p>';
+                if(grid) grid.innerHTML = '<p style="text-align:center;color:red;padding:40px;">❌ Config tidak ditemukan</p>';
                 return;
             }
             allProducts = [...(CONFIG.PRODUCTS || [])];
             let logo = document.getElementById('logoImg');
-            if(logo) logo.src = CONFIG.LOGO_URL || 'https://placehold.co/200x200/1a1a2e/e6bc91?text=KC';
+            if(logo) logo.src = CONFIG.LOGO_URL || 'https://picsum.photos/id/105/200/200';
             let sn = document.getElementById('storeName');
             if(sn) sn.innerHTML = CONFIG.STORE_NAME;
             let st = document.getElementById('storeTagline');
@@ -398,8 +405,7 @@
         document.getElementById('checkoutTgBtn')?.addEventListener('click',()=>checkoutCart('tg'));
         window.onclick = (e)=>{ if(e.target === document.getElementById('cartModal')) document.getElementById('cartModal').style.display='none'; };
         
-        if(CONFIG) init();
-        else window.addEventListener('load',()=>{ if(window.KANSHI_CONFIG){ CONFIG=window.KANSHI_CONFIG; init(); } });
+        init();
     })();
 </script>
 </body>
