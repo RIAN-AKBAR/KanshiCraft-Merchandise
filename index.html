@@ -278,6 +278,16 @@
             margin-bottom: 12px;
             color: #b7a58f;
         }
+        .shipping-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: #1e2a1f;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            margin-left: 8px;
+            color: #a8c7a8;
+        }
         .buy-btn {
             display: inline-block;
             width: 100%;
@@ -617,13 +627,22 @@
         availableProducts.forEach(prod => {
             const card = document.createElement("div");
             card.className = "product-card";
+            
+            // Ambil estimasi pengiriman dari produk atau default
+            const shippingEst = prod.shippingEstimate || CONFIG.DEFAULT_SHIPPING_ESTIMATE;
+            
             const stockHtml = prod.stock ? `<div class="stock-badge"><i class="fas fa-box"></i> Stok: ${prod.stock}</div>` : '';
+            const shippingHtml = `<div class="shipping-badge"><i class="fas fa-truck"></i> ⏱️ ${shippingEst}</div>`;
+            
             card.innerHTML = `
                 <img class="product-img" src="${prod.img}" alt="${prod.name}" loading="lazy" onerror="this.src='https://placehold.co/500x500?text=KanshiCraft'">
                 <div class="product-info">
                     <div class="product-title">${prod.name}</div>
                     <div class="product-desc">${prod.desc}</div>
-                    ${stockHtml}
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        ${stockHtml}
+                        ${shippingHtml}
+                    </div>
                     <div class="price">${prod.price}</div>
                     <button class="buy-btn" data-id="${prod.id}" ${prod.stock === 0 ? 'disabled' : ''}>
                         <i class="fab fa-instagram" style="margin-right: 8px;"></i> 
@@ -652,7 +671,8 @@
         }
         // Fallback message
         const date = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
-        return `✨ KARTU PEMBELI KANSHI ✨\n\n🌸 Halo Kak! Saya tertarik dengan produk ini:\n\n📌 ${product.name}\n💰 ${product.price}\n\n📅 ${date}\n\n— Pembeli dari Kanshi Craft`;
+        const shippingEst = product.shippingEstimate || (CONFIG ? CONFIG.DEFAULT_SHIPPING_ESTIMATE : '2-4 hari kerja');
+        return `✨ KARTU PEMBELI KANSHI ✨\n\n🌸 Halo Kak! Saya tertarik dengan produk ini:\n\n📌 ${product.name}\n💰 ${product.price}\n⏱️ Estimasi Pengiriman: ${shippingEst}\n\n📅 ${date}\n\n— Pembeli dari Kanshi Craft`;
     }
     
     function openModalWithProduct(product) {
@@ -661,14 +681,23 @@
         const modal = document.getElementById("orderModal");
         const summaryDiv = document.getElementById("orderSummary");
         
-        const categoryLabel = product.category === "menggambar" ? "🎨 Menggambar / Lukis" : 
-                             (product.category === "boneka" ? "🧸 Boneka Tangan" : "💍 Aksesoris");
+        // Tentukan label kategori
+        let categoryLabel = "🎨 Lukisan/Ilustrasi";
+        if (product.category === "boneka") categoryLabel = "🧸 Boneka Tangan";
+        else if (product.category === "aksesoris") categoryLabel = "💍 Aksesoris";
+        else if (product.category === "Fanart") categoryLabel = "🎨 Custom Fanart / Digital";
         
+        // Ambil estimasi pengiriman dari produk atau default
+        const shippingEst = product.shippingEstimate || (CONFIG ? CONFIG.DEFAULT_SHIPPING_ESTIMATE : "2-4 hari kerja");
+        
+        // 👇 INI BAGIAN ESTIMASI DI MODAL/CARD POPUP
         summaryDiv.innerHTML = `
             <p><span>🖌️ Produk</span><span><strong>${product.name}</strong></span></p>
             <p><span>🏷️ Harga</span><span><strong>${product.price}</strong></span></p>
             <p><span>📦 Kategori</span><span>${categoryLabel}</span></p>
-            <p><span>⭐ Est. pengiriman</span><span>${CONFIG ? CONFIG.SHIPPING_ESTIMATE : '5-7 hari kerja'}</span></p>
+            <!-- 👉 TANDA DI SINI - Estimasi Hari Kerja (bagian card popup) 👇 -->
+            <p><span>⭐ Est. Pengiriman</span><span><strong>${shippingEst}</strong></span></p>
+            <!-- 👆 TANDA DI SINI - Estimasi Hari Kerja (bagian card popup) -->
         `;
         document.getElementById("fullMessageText").innerText = currentMessage;
         modal.style.display = "flex";
