@@ -28,7 +28,7 @@ const KANSHI_CONFIG = {
             img: "https://cdn.phototourl.com/free/2026-04-09-c92ea1ec-b18c-483e-a4d2-10380077d3e5.jpg",
             stock: 10,
             isAvailable: true,
-            shippingEstimate: "3-5 hari kerja"  // 👈 TAMBAHKAN INI - estimasi untuk produk ini
+            shippingEstimate: "5-7 hari kerja ( Tergantung Antrian )"  // 👈 TAMBAHKAN INI - estimasi untuk produk ini
         }
         // 👇 CONTOH TAMBAH PRODUK BARU DENGAN ESTIMASI BERBEDA
         // {
