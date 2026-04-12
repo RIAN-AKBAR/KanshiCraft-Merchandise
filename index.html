@@ -343,6 +343,25 @@
                 filtered = filtered.filter(p=>p.name.toLowerCase().includes(sl) || (p.desc||"").toLowerCase().includes(sl) || (p.category||"").toLowerCase().includes(sl));
             }
             renderProducts(filtered);
+            
+            // 👇 SCROLL OTOMATIS KE BAWAH SETELAH SEARCH 👇
+            setTimeout(function() {
+                let produkSection = document.getElementById('products');
+                if (produkSection) {
+                    let offset = 80; // offset untuk header sticky
+                    let elementPosition = produkSection.getBoundingClientRect().top + window.pageYOffset;
+                    window.scrollTo({
+                        top: elementPosition - offset,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // fallback scroll ke product grid
+                    let grid = document.getElementById('productGrid');
+                    if (grid) {
+                        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            }, 100);
         }
         
         function renderCategories(){
