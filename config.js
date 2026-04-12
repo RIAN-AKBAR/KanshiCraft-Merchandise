@@ -1,7 +1,7 @@
 const KANSHI_CONFIG = {
-    MAINTENANCE_MODE: true,
+    MAINTENANCE_MODE: true,  // 👈 GANTI JADI true UNTUK AKTIFKAN MAINTENANCE
     MAINTENANCE_MESSAGE: "Kami sedang melakukan perbaikan dan peningkatan sistem",
-    MAINTENANCE_ETA: "30",
+    MAINTENANCE_ETA: "2-3 jam",  // Perkiraan selesai
     
     STORE_NAME: "KanshiCraft Store",
     STORE_TAGLINE: "Give & Merchandise",
