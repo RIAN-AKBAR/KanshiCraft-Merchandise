@@ -113,91 +113,21 @@
     </style>
 </head>
 <body>
-<header class="header">
-    <div class="container header-inner">
-        <div class="logo-area">
-            <img class="logo-img" id="logoImg" src="" alt="Logo" onerror="this.src='https://placehold.co/200x200/1a1a2e/e6bc91?text=KC'">
-            <div class="logo-text">
-                <h1 id="storeName">KanshiCraft Store</h1>
-                <p id="storeTagline">Give & Merchandise</p>
-            </div>
-        </div>
-        <div class="nav-links">
-            <a href="#">Beranda</a>
-            <a href="#products">Koleksi</a>
-            <a href="#tutorial">Cara Pesan</a>
-            <div class="cart-icon" id="cartIcon">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count" id="cartCount">0</span>
-            </div>
-        </div>
-    </div>
-</header>
-
-<main>
-    <div class="container">
-        <div class="search-section">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari produk... contoh: chibi, boneka">
-                <button id="searchBtn">Cari</button>
-            </div>
-            <div class="category-filter" id="categoryFilter"></div>
-        </div>
-        
-        <div class="rating-section">
-            <div class="rating-stats">
-                <div class="rating-score">
-                    <span class="big-score">4.9</span>
-                    <div>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                        <div class="total-rating">2.5 Juta rating</div>
-                    </div>
-                </div>
-                <div class="rating-bars">
-                    <div class="rating-bar-item"><span class="star-label">5⭐</span><div class="bar"><div class="bar-fill" style="width:85%"></div></div><span class="percent">85%</span></div>
-                    <div class="rating-bar-item"><span class="star-label">4⭐</span><div class="bar"><div class="bar-fill" style="width:10%"></div></div><span class="percent">10%</span></div>
-                </div>
-            </div>
-            <div class="rating-actions">
-                <button class="rating-btn" id="writeReviewBtn"><i class="fas fa-pen"></i> Ulasan</button>
-                <button class="rating-btn" id="viewReviewsBtn"><i class="fas fa-comments"></i> 500rb+</button>
-            </div>
-        </div>
-        
-        <div class="hero-banner"><img id="heroImage" src="" alt="Banner" onerror="this.src='https://placehold.co/1200x400/1a1a2e/e6bc91?text=KanshiCraft+Banner'"></div>
-        <div class="hero-caption" id="heroCaptions"></div>
-        
-        <div class="tutorial-section">
-            <div class="tutorial-title"><i class="fab fa-instagram"></i> <i class="fab fa-telegram"></i> Cara Pesan</div>
-            <div class="steps-grid" id="stepsGrid"></div>
-            <p style="text-align:center; margin-top:16px; font-size:0.7rem;"><i class="fas fa-info-circle"></i> Klik Telegram → pesan terisi otomatis. Klik IG → copy pesan & buka profil.</p>
-        </div>
-        
-        <div class="section-title" id="products">✦ Pilihan Karya Terbaik ✦</div>
-        <div class="products-grid" id="productGrid"></div>
-    </div>
-</main>
-
-<footer><div class="container"><p id="footerText"></p><p style="margin-top:6px;" id="footerSubtext"></p></div></footer>
-
-<div id="cartModal" class="cart-modal">
-    <div class="cart-modal-card">
-        <div class="cart-header"><h3><i class="fas fa-shopping-cart"></i> Keranjang</h3><button class="close-cart" id="closeCartBtn">&times;</button></div>
-        <div id="cartItemsContainer" class="cart-items"><div class="empty-cart">Keranjang kosong 🛒</div></div>
-        <div class="cart-summary" id="cartSummary" style="display:none;">
-            <div class="cart-total"><span>Total:</span><span id="cartTotalPrice">Rp 0</span></div>
-            <div class="checkout-buttons"><button class="checkout-ig-btn" id="checkoutIgBtn"><i class="fab fa-instagram"></i> IG</button><button class="checkout-tg-btn" id="checkoutTgBtn"><i class="fab fa-telegram"></i> Telegram</button></div>
-        </div>
-    </div>
-</div>
 
 <script src="config.js"></script>
 <script>
     (function(){
+        // CEK MAINTENANCE MODE - REDIRECT KE maintenance.html
+        if (typeof KANSHI_CONFIG !== 'undefined' && KANSHI_CONFIG.MAINTENANCE_MODE === true) {
+            // Redirect ke halaman maintenance.html
+            window.location.href = 'maintenance.html?eta=' + encodeURIComponent(KANSHI_CONFIG.MAINTENANCE_ETA || '30');
+            return;
+        }
+        
+        // Jika MAINTENANCE_MODE = false, lanjutkan seperti biasa
         if (typeof KANSHI_CONFIG === 'undefined') {
             console.error("KANSHI_CONFIG tidak ditemukan!");
-            document.getElementById('productGrid').innerHTML = '<p style="text-align:center;color:red;padding:40px;">❌ Error: File config.js tidak terbaca. Pastikan file config.js berada di folder yang sama dengan index.html</p>';
+            document.body.innerHTML = '<div style="text-align:center;color:red;padding:40px;">❌ Error: File config.js tidak terbaca. Pastikan file config.js berada di folder yang sama dengan index.html</div>';
             return;
         }
         
@@ -215,6 +145,92 @@
             if(match) IG_USERNAME = match[1];
             TG_USERNAME = CONFIG.TELEGRAM_USERNAME ? CONFIG.TELEGRAM_USERNAME.replace("@","") : "";
         }
+        
+        // Build HTML struktur
+        function buildHTML() {
+            return `
+                <header class="header">
+                    <div class="container header-inner">
+                        <div class="logo-area">
+                            <img class="logo-img" id="logoImg" src="" alt="Logo" onerror="this.src='https://placehold.co/200x200/1a1a2e/e6bc91?text=KC'">
+                            <div class="logo-text">
+                                <h1 id="storeName">${CONFIG.STORE_NAME}</h1>
+                                <p id="storeTagline">${CONFIG.STORE_TAGLINE}</p>
+                            </div>
+                        </div>
+                        <div class="nav-links">
+                            <a href="#">Beranda</a>
+                            <a href="#products">Koleksi</a>
+                            <a href="#tutorial">Cara Pesan</a>
+                            <div class="cart-icon" id="cartIcon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-count" id="cartCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                
+                <main>
+                    <div class="container">
+                        <div class="search-section">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="searchInput" placeholder="Cari produk... contoh: chibi, boneka">
+                                <button id="searchBtn">Cari</button>
+                            </div>
+                            <div class="category-filter" id="categoryFilter"></div>
+                        </div>
+                        
+                        <div class="rating-section">
+                            <div class="rating-stats">
+                                <div class="rating-score">
+                                    <span class="big-score">4.9</span>
+                                    <div>
+                                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                                        <div class="total-rating">2.5 Juta rating</div>
+                                    </div>
+                                </div>
+                                <div class="rating-bars">
+                                    <div class="rating-bar-item"><span class="star-label">5⭐</span><div class="bar"><div class="bar-fill" style="width:85%"></div></div><span class="percent">85%</span></div>
+                                    <div class="rating-bar-item"><span class="star-label">4⭐</span><div class="bar"><div class="bar-fill" style="width:10%"></div></div><span class="percent">10%</span></div>
+                                </div>
+                            </div>
+                            <div class="rating-actions">
+                                <button class="rating-btn" id="writeReviewBtn"><i class="fas fa-pen"></i> Ulasan</button>
+                                <button class="rating-btn" id="viewReviewsBtn"><i class="fas fa-comments"></i> 500rb+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-banner"><img id="heroImage" src="${CONFIG.HERO_IMAGES?.[0] || ''}" alt="Banner" onerror="this.src='https://placehold.co/1200x400/1a1a2e/e6bc91?text=KanshiCraft+Banner'"></div>
+                        <div class="hero-caption" id="heroCaptions"></div>
+                        
+                        <div class="tutorial-section">
+                            <div class="tutorial-title"><i class="fab fa-instagram"></i> <i class="fab fa-telegram"></i> Cara Pesan</div>
+                            <div class="steps-grid" id="stepsGrid"></div>
+                            <p style="text-align:center; margin-top:16px; font-size:0.7rem;"><i class="fas fa-info-circle"></i> Klik Telegram → pesan terisi otomatis. Klik IG → copy pesan & buka profil.</p>
+                        </div>
+                        
+                        <div class="section-title" id="products">✦ Pilihan Karya Terbaik ✦</div>
+                        <div class="products-grid" id="productGrid"></div>
+                    </div>
+                </main>
+                
+                <footer><div class="container"><p id="footerText">${CONFIG.FOOTER_TEXT}</p><p style="margin-top:6px;" id="footerSubtext">${CONFIG.FOOTER_SUBTEXT}</p></div></footer>
+                
+                <div id="cartModal" class="cart-modal">
+                    <div class="cart-modal-card">
+                        <div class="cart-header"><h3><i class="fas fa-shopping-cart"></i> Keranjang</h3><button class="close-cart" id="closeCartBtn">&times;</button></div>
+                        <div id="cartItemsContainer" class="cart-items"><div class="empty-cart">Keranjang kosong 🛒</div></div>
+                        <div class="cart-summary" id="cartSummary" style="display:none;">
+                            <div class="cart-total"><span>Total:</span><span id="cartTotalPrice">Rp 0</span></div>
+                            <div class="checkout-buttons"><button class="checkout-ig-btn" id="checkoutIgBtn"><i class="fab fa-instagram"></i> IG</button><button class="checkout-tg-btn" id="checkoutTgBtn"><i class="fab fa-telegram"></i> Telegram</button></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        document.body.innerHTML = buildHTML();
         
         function saveCart(){ localStorage.setItem('kanshi_cart',JSON.stringify(cart)); updateCartUI(); }
         function loadCart(){ let s=localStorage.getItem('kanshi_cart'); if(s) cart=JSON.parse(s); updateCartUI(); }
@@ -344,22 +360,12 @@
             }
             renderProducts(filtered);
             
-            // 👇 SCROLL OTOMATIS KE BAWAH SETELAH SEARCH 👇
             setTimeout(function() {
                 let produkSection = document.getElementById('products');
                 if (produkSection) {
-                    let offset = 80; // offset untuk header sticky
+                    let offset = 80;
                     let elementPosition = produkSection.getBoundingClientRect().top + window.pageYOffset;
-                    window.scrollTo({
-                        top: elementPosition - offset,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    // fallback scroll ke product grid
-                    let grid = document.getElementById('productGrid');
-                    if (grid) {
-                        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+                    window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
                 }
             }, 100);
         }
@@ -386,28 +392,16 @@
         }
         
         function init(){
-            if(!CONFIG){
-                let grid = document.getElementById('productGrid');
-                if(grid) grid.innerHTML = '<p style="text-align:center;color:red;padding:40px;">❌ Config tidak ditemukan</p>';
-                return;
-            }
             allProducts = [...(CONFIG.PRODUCTS || [])];
             let logo = document.getElementById('logoImg');
             if(logo) logo.src = CONFIG.LOGO_URL || 'https://placehold.co/200x200/1a1a2e/e6bc91?text=KC';
-            let sn = document.getElementById('storeName');
-            if(sn) sn.innerHTML = CONFIG.STORE_NAME;
-            let st = document.getElementById('storeTagline');
-            if(st) st.innerText = CONFIG.STORE_TAGLINE;
-            let hi = document.getElementById('heroImage');
-            if(hi && CONFIG.HERO_IMAGES && CONFIG.HERO_IMAGES[0]) hi.src = CONFIG.HERO_IMAGES[0];
+            
             let hc = document.getElementById('heroCaptions');
             if(hc && CONFIG.HERO_CAPTIONS) hc.innerHTML = CONFIG.HERO_CAPTIONS.map(c=>`<span><i class="fas ${c.icon}"></i> ${c.text}</span>`).join('');
+            
             let sg = document.getElementById('stepsGrid');
             if(sg && CONFIG.TUTORIAL_STEPS) sg.innerHTML = CONFIG.TUTORIAL_STEPS.map(s=>`<div class="step-card"><div class="step-number">${s.number}</div><i class="fas ${s.icon}"></i><h4>${s.title}</h4><p>${s.description}</p></div>`).join('');
-            let ft = document.getElementById('footerText');
-            if(ft) ft.innerText = CONFIG.FOOTER_TEXT;
-            let fs = document.getElementById('footerSubtext');
-            if(fs) fs.innerText = CONFIG.FOOTER_SUBTEXT;
+            
             renderCategories();
             filterProducts();
             loadCart();
