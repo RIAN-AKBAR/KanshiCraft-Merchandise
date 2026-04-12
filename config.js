@@ -1,5 +1,5 @@
 const KANSHI_CONFIG = {
-    MAINTENANCE_MODE: true,  // 👈 GANTI JADI true UNTUK AKTIFKAN MAINTENANCE
+    MAINTENANCE_MODE: false,  // 👈 GANTI JADI true UNTUK AKTIFKAN MAINTENANCE
     MAINTENANCE_MESSAGE: "Kami sedang melakukan perbaikan dan peningkatan sistem",
     MAINTENANCE_ETA: "2-3 jam",  // Perkiraan selesai
     
