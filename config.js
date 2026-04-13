@@ -43,7 +43,7 @@ const KANSHI_CONFIG = {
             desc: "S&K CUSTOM PNGTUBER\n\n1. DP 50% di awal, lunas 50% sebelum file dikirim. DP tidak refund jika pesanan dibatalkan klien.\n2. Memiliki 4 ekspresi base default.\n3. Pengerjaan 7–14 hari kerja (tergantung jumlah ekspresi dan kompleksitas aksesori).\n4. File diberikan dalam format PNG melalui drive.",
             price: "Rp 80.000 - 100.000",
             category: "Fanart",
-            img: "https://placehold.co/500x500/1a1a2e/e6bc91?text=PNGtuber",
+            img: "https://files.catbox.moe/zg3qzw.jpg",
             stock: 5,
             isAvailable: true,
             shippingEstimate: "7-14 hari kerja"
