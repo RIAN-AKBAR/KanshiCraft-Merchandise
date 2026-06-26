@@ -14,7 +14,20 @@
         .header { padding: 24px 0; border-bottom: 1px solid #2a2622; background: rgba(11, 10, 10, 0.92); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
         .header-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
         .logo-area { display: flex; align-items: center; gap: 14px; }
-        .logo-img { width: 52px; height: 52px; object-fit: cover; border-radius: 20px; background: #2b2520; border: 1px solid #4a3e34; }
+        
+        /* ============================================= */
+        /* 🔥 LOGO - FULL TIDAK KEPOTONG */
+        /* ============================================= */
+        .logo-img { 
+            width: 60px; 
+            height: 60px; 
+            object-fit: contain;  /* <-- contain biar full tidak kepotong */
+            background: transparent; 
+            border: none; 
+            border-radius: 12px;
+            display: block;
+        }
+        
         .logo-text h1 { font-size: 1.7rem; font-weight: 600; background: linear-gradient(135deg, #f3e3d3, #c9aa8a); -webkit-background-clip: text; background-clip: text; color: transparent; }
         .logo-text p { font-size: 0.8rem; color: #b7a58f; }
         .nav-links { display: flex; gap: 32px; align-items: center; }
@@ -50,8 +63,28 @@
         .rating-btn { background: #2d2722; border: 1px solid #4c3e33; padding: 6px 14px; border-radius: 40px; cursor: pointer; color: #e0d3c6; font-size: 0.7rem; }
         .rating-btn:hover { background: #e6bc91; color: #1e1712; }
         
-        .hero-banner { margin-top: 0; border-radius: 24px; overflow: hidden; background: #0f0d0b; }
-        .hero-banner img { width: 100%; min-height: 200px; max-height: 300px; object-fit: cover; display: block; }
+        /* ============================================= */
+        /* 🔥 BANNER - FULL WIDTH TIDAK KEPOTONG */
+        /* ============================================= */
+        .hero-banner { 
+            margin-top: 0; 
+            border-radius: 24px; 
+            overflow: hidden; 
+            background: #0f0d0b;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-banner img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 400px;
+            object-fit: contain;  /* <-- contain biar full tidak kepotong */
+            display: block;
+            background: #0f0d0b;
+        }
+        
         .hero-caption { text-align: center; margin-top: 16px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
         .hero-caption span { background: #201c18; padding: 4px 12px; border-radius: 40px; font-size: 0.7rem; }
         
@@ -219,6 +252,9 @@
         
         footer { margin-top: 48px; padding: 32px 0; text-align: center; border-top: 1px solid #2f2822; color: #9c8b78; font-size: 0.75rem; }
         
+        /* ============================================= */
+        /* 🔥 RESPONSIVE - UKURAN HP */
+        /* ============================================= */
         @media (max-width: 700px) {
             .container { padding: 0 16px; }
             .products-grid { gap: 16px; grid-template-columns: 1fr; }
@@ -227,6 +263,17 @@
             .search-box button { padding: 6px 16px; font-size: 0.8rem; }
             .product-img { height: 180px; }
             .product-desc { font-size: 0.7rem; }
+            
+            /* Logo lebih kecil di HP */
+            .logo-img { 
+                width: 45px; 
+                height: 45px; 
+            }
+            
+            /* Banner lebih kecil di HP */
+            .hero-banner img { 
+                max-height: 200px;
+            }
         }
     </style>
 </head>
@@ -379,13 +426,11 @@
             
             if (!writeReviewBtn) return;
             
-            // Buka modal saat tombol "Ulasan" diklik
             writeReviewBtn.addEventListener('click', () => {
                 modal.style.display = 'flex';
                 resetRatingForm();
             });
             
-            // Event untuk bintang
             stars.forEach(star => {
                 star.addEventListener('click', function() {
                     selectedStars = parseInt(this.dataset.value);
@@ -409,7 +454,6 @@
                 sendRatingToTelegram();
             });
             
-            // Tutup modal jika klik di luar area card
             modal.addEventListener('click', (e) => {
                 if(e.target === modal) {
                     modal.style.display = 'none';
@@ -465,7 +509,6 @@
                 return;
             }
             
-            // Format pesan rating
             let starDisplay = '';
             for(let i=0; i<selectedStars; i++) starDisplay += '⭐';
             if(selectedStars < 5) starDisplay += ` (${selectedStars}/5)`;
@@ -481,11 +524,9 @@
 
 💫 Terima kasih atas ulasannya! 🌷`;
             
-            // Kirim ke Telegram
             const teleUrl = `https://t.me/${TG_USERNAME}?text=${encodeURIComponent(message)}`;
             window.open(teleUrl, '_blank');
             
-            // Tutup modal dan kasih notifikasi
             document.getElementById('ratingModal').style.display = 'none';
             alert("✅ Terima kasih! Halaman Telegram akan terbuka.\nSilakan kirim pesan rating tersebut.");
             resetRatingForm();
@@ -673,7 +714,7 @@
             renderCategories();
             filterProducts();
             loadCart();
-            initRatingModal(); // <-- Aktifkan modal rating
+            initRatingModal();
         }
         
         document.getElementById('viewReviewsBtn')?.addEventListener('click',()=>alert("📝 500.000+ ULASAN\n\n⭐ 4.9 dari 2.5 Juta rating\n\n💬 Testimonial:\n'Kualitasnya luar biasa! Pengiriman cepat.' - ★★★★★\n'Rajutannya rapi banget!' - ★★★★★\n'Friendly seller, produk sesuai ekspektasi' - ★★★★★"));
