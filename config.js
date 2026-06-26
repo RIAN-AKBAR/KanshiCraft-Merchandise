@@ -1,7 +1,7 @@
 const KANSHI_CONFIG = {
-    MAINTENANCE_MODE: false,  // 👈 GANTI JADI true UNTUK AKTIFKAN MAINTENANCE
+    MAINTENANCE_MODE: false,
     MAINTENANCE_MESSAGE: "Kami sedang melakukan perbaikan dan peningkatan sistem",
-    MAINTENANCE_ETA: "2-3 jam",  // Perkiraan selesai
+    MAINTENANCE_ETA: "2-3 jam",
     
     STORE_NAME: "KanshiCraft Store",
     STORE_TAGLINE: "Give & Merchandise",
@@ -68,11 +68,13 @@ const KANSHI_CONFIG = {
         { number: 4, icon: "fa-telegram", title: "Kirim Pesan", description: "Pilih Telegram (auto terisi) atau IG (copy-paste)." }
     ],
     
-    HERO_IMAGES: [
-        "https://scontent-atl3-3.xx.fbcdn.net/v/t1.15752-9/663825272_4498277573738742_7260771414971499913_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=Hf2iROiOjIsQ7kNvwHwLmzO&_nc_oc=AdrJgSiAM3qh1x-SbD62h4taq3QAKkhEWqJwnVQkQtrgu5yCVM4e6niue-RYSDhVwg4RFTiZwrKYM-Se0VZ7Nmqu&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-atl3-3.xx&_nc_ss=7a32e&oh=03_Q7cD5AGXY5DVFoLCCqbVxGfHm5FGrWfqUSqXtifktmY7Hod83g&oe=69FEB5B8"
-    ],
+    // ✅ LOGO BARU
+    LOGO_URL: "https://files.catbox.moe/q7uu3l.png",
     
-    LOGO_URL: "https://scontent-atl3-2.xx.fbcdn.net/v/t1.15752-9/663922348_964992852665698_5751482842647934933_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOmNvbnRyb2wiXX0%3D&_nc_ohc=ovl6j9rtHPUQ7kNvwGF1xkC&_nc_oc=AdrbJNYdtGnhwD_YoXesDQOdipnXFbVLzzN5xElUgXpgeygy2f0GkppExOajs0dDQNt0II4M_OgYpyxnpCsw_0hH&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-atl3-2.xx&_nc_ss=7a32e&oh=03_Q7cD5AE_WFjX9uCfJKqOE705_s6Vmb-twZDaoqkMNJWSP4oOtA&oe=69FEB5DB",
+    // ✅ BANNER BARU
+    HERO_IMAGES: [
+        "https://files.catbox.moe/17s9o5.png"
+    ],
     
     HERO_CAPTIONS: [
         { icon: "fa-feather-alt", text: "kerajinan yang bercerita" },
