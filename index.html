@@ -543,7 +543,7 @@
             text-transform: uppercase;
         }
 
-        /* Chatbase Modal - dengan iframe */
+        /* Chatbase Modal - FULL FRAME */
         .chatbase-modal-overlay {
             display: none;
             position: fixed;
@@ -551,8 +551,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
             z-index: 9999;
             justify-content: center;
             align-items: center;
@@ -563,12 +563,12 @@
         }
         .chatbase-modal {
             background: white;
-            border-radius: 32px;
-            max-width: 550px;
-            width: 92%;
-            height: 750px;
-            max-height: 90vh;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 28px;
+            max-width: 600px;
+            width: 96%;
+            height: 92vh;
+            max-height: 92vh;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
             overflow: hidden;
             position: relative;
             display: flex;
@@ -578,10 +578,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 24px;
+            padding: 14px 22px;
             border-bottom: 1px solid #eee7de;
             background: white;
             flex-shrink: 0;
+            z-index: 5;
         }
         .chatbase-modal-header h3 {
             font-size: 1.1rem;
@@ -601,6 +602,7 @@
             color: #6b5b4b;
             padding: 0 8px;
             transition: 0.2s;
+            line-height: 1;
         }
         .chatbase-modal-close:hover {
             color: #b34a3c;
@@ -609,15 +611,18 @@
         .chatbase-iframe-wrapper {
             flex: 1;
             position: relative;
-            background: #f8f4ef;
-            min-height: 500px;
+            background: #ffffff;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
         }
         .chatbase-iframe-wrapper iframe {
             width: 100%;
             height: 100%;
-            min-height: 650px;
+            flex: 1;
             border: none;
             display: block;
+            min-height: 500px;
         }
         .chatbase-loading {
             position: absolute;
@@ -682,12 +687,13 @@
                 padding: 8px 16px;
             }
             .chatbase-modal {
-                height: 600px;
-                max-height: 85vh;
-                max-width: 95%;
+                width: 98%;
+                height: 96vh;
+                max-height: 96vh;
+                border-radius: 20px;
             }
             .chatbase-iframe-wrapper iframe {
-                min-height: 500px;
+                min-height: 400px;
             }
         }
         @media (max-width: 480px) {
@@ -717,11 +723,19 @@
                 padding: 6px 14px;
             }
             .chatbase-modal {
-                height: 500px;
-                max-height: 80vh;
+                width: 100%;
+                height: 100vh;
+                max-height: 100vh;
+                border-radius: 0;
             }
             .chatbase-iframe-wrapper iframe {
-                min-height: 400px;
+                min-height: 350px;
+            }
+            .chatbase-modal-header {
+                padding: 12px 16px;
+            }
+            .chatbase-modal-header h3 {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -813,7 +827,7 @@
         </div>
     </div>
 
-    <!-- Chatbase Modal -->
+    <!-- Chatbase Modal - FULL FRAME -->
     <div class="chatbase-modal-overlay" id="chatbaseModal">
         <div class="chatbase-modal">
             <div class="chatbase-modal-header">
@@ -828,7 +842,7 @@
                 <iframe
                     src="https://www.chatbase.co/chatbot-iframe/xEBkxJ1uIco6fBgb1emtw"
                     width="100%"
-                    style="height: 100%; min-height: 700px"
+                    style="height: 100%; min-height: 700px; flex: 1;"
                     frameborder="0"
                     allow="microphone"
                     id="chatbaseIframe"
@@ -904,20 +918,23 @@
                 // Sembunyikan loading setelah iframe load
                 chatbaseIframe.onload = function() {
                     chatbaseLoading.style.display = 'none';
+                    chatbaseIframe.style.display = 'block';
                 };
                 
                 // Timeout jika loading terlalu lama
                 setTimeout(function() {
                     chatbaseLoading.style.display = 'none';
+                    chatbaseIframe.style.display = 'block';
                 }, 5000);
             }
 
             function closeChatbase() {
                 chatbaseModal.classList.remove('active');
                 document.body.style.overflow = '';
-                // Reset loading untuk下次
+                // Reset untuk下次
                 setTimeout(function() {
                     chatbaseLoading.style.display = 'block';
+                    chatbaseIframe.style.display = 'none';
                 }, 300);
             }
 
