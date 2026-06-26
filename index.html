@@ -68,10 +68,10 @@
         .section-title:after { content: ''; display: block; width: 50px; height: 2px; background: #9b7b5c; margin: 8px auto 0; border-radius: 2px; }
         
         .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-bottom: 48px; }
-        .product-card { background: #161311; border-radius: 20px; overflow: hidden; border: 1px solid #2f2822; transition: transform 0.3s; }
+        .product-card { background: #161311; border-radius: 20px; overflow: hidden; border: 1px solid #2f2822; transition: transform 0.3s; display: flex; flex-direction: column; }
         .product-card:hover { transform: translateY(-4px); border-color: #6b5542; }
         .product-img { width: 100%; height: 200px; object-fit: cover; background: #2a231e; }
-        .product-info { padding: 16px; }
+        .product-info { padding: 16px; display: flex; flex-direction: column; flex: 1; }
         .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
         .product-desc { 
             font-size: 0.75rem; 
@@ -82,15 +82,42 @@
             display: block;
             overflow: visible;
             max-height: none;
+            flex: 1;
         }
         .price { font-weight: 700; font-size: 1.2rem; color: #e6bc91; margin: 8px 0 12px; }
         .stock-badge { display: inline-block; font-size: 0.65rem; background: #2a231f; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
         
         .button-group { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-        .buy-ig-btn, .buy-tg-btn, .cart-btn { flex: 1; padding: 8px 0; font-size: 0.75rem; font-weight: 600; border-radius: 30px; cursor: pointer; text-align: center; border: none; }
-        .buy-ig-btn { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: white; }
-        .buy-tg-btn { background: #26A5E4; color: white; }
-        .cart-btn { background: #2d2722; color: #f2e5da; border: 1px solid #4c3e33; }
+        .buy-now-btn { 
+            flex: 1; 
+            padding: 10px 0; 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            text-align: center; 
+            border: none;
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            color: white;
+            transition: opacity 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .buy-now-btn:hover { opacity: 0.85; }
+        .cart-btn { 
+            flex: 1; 
+            padding: 10px 0; 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            text-align: center; 
+            border: none; 
+            background: #2d2722; 
+            color: #f2e5da; 
+            border: 1px solid #4c3e33;
+            transition: background 0.2s;
+        }
+        .cart-btn:hover { background: #3d342e; }
         
         /* Modal untuk Rating */
         .modal-rating {
@@ -291,7 +318,7 @@
                         <div class="hero-banner"><img id="heroImage" src="${CONFIG.HERO_IMAGES?.[0] || ''}" alt="Banner" onerror="this.src='https://placehold.co/1200x400/1a1a2e/e6bc91?text=KanshiCraft+Banner'"></div>
                         <div class="hero-caption" id="heroCaptions"></div>
                         
-                        <div class="tutorial-section">
+                        <div class="tutorial-section" id="tutorial">
                             <div class="tutorial-title"><i class="fab fa-instagram"></i> <i class="fab fa-telegram"></i> Cara Pesan</div>
                             <div class="steps-grid" id="stepsGrid"></div>
                             <p style="text-align:center; margin-top:16px; font-size:0.7rem;"><i class="fas fa-info-circle"></i> Klik Telegram → pesan terisi otomatis. Klik IG → copy pesan & buka profil.</p>
@@ -548,10 +575,9 @@
             }).catch(()=>alert("⚠️ Silakan copy manual:\n\n"+msg));
         }
         
-        function buyNow(p,platform){
+        function buyNow(p){
             let msg = formatSingleMessage(p);
-            if(platform==='tg') sendToTelegram(msg);
-            else buyViaInstagram(msg);
+            buyViaInstagram(msg);
         }
         
         function checkoutCart(platform){
@@ -576,12 +602,23 @@
                 let imgUrl = p.img || 'https://placehold.co/500x500/1a1a2e/e6bc91?text=KanshiCraft';
                 let card = document.createElement('div');
                 card.className = 'product-card';
-                card.innerHTML = `<img class="product-img" src="${imgUrl}" onerror="this.src='https://placehold.co/500x500/1a1a2e/e6bc91?text=KanshiCraft'"><div class="product-info"><div class="product-title">${p.name}</div><div class="product-desc" style="white-space: pre-line; display: block; max-height: none; overflow: visible;">${p.desc || ''}</div>${stockHtml}<div class="price">${p.price}</div><div class="button-group"><button class="cart-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Tambah</button><button class="buy-ig-btn" data-id="${p.id}"><i class="fab fa-instagram"></i> IG</button><button class="buy-tg-btn" data-id="${p.id}"><i class="fab fa-telegram"></i> TG</button></div></div>`;
+                card.innerHTML = `
+                    <img class="product-img" src="${imgUrl}" onerror="this.src='https://placehold.co/500x500/1a1a2e/e6bc91?text=KanshiCraft'">
+                    <div class="product-info">
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-desc" style="white-space: pre-line; display: block; max-height: none; overflow: visible;">${p.desc || ''}</div>
+                        ${stockHtml}
+                        <div class="price">${p.price}</div>
+                        <div class="button-group">
+                            <button class="cart-btn" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Tambah</button>
+                            <button class="buy-now-btn" data-id="${p.id}"><i class="fas fa-shopping-bag"></i> Beli</button>
+                        </div>
+                    </div>
+                `;
                 grid.appendChild(card);
             });
             document.querySelectorAll('.cart-btn').forEach(btn=>{ btn.onclick = ()=>{ let p = allProducts.find(x=>x.id==btn.dataset.id); if(p) addToCart(p); }; });
-            document.querySelectorAll('.buy-ig-btn').forEach(btn=>{ btn.onclick = ()=>{ let p = allProducts.find(x=>x.id==btn.dataset.id); if(p) buyNow(p,'ig'); }; });
-            document.querySelectorAll('.buy-tg-btn').forEach(btn=>{ btn.onclick = ()=>{ let p = allProducts.find(x=>x.id==btn.dataset.id); if(p) buyNow(p,'tg'); }; });
+            document.querySelectorAll('.buy-now-btn').forEach(btn=>{ btn.onclick = ()=>{ let p = allProducts.find(x=>x.id==btn.dataset.id); if(p) buyNow(p); }; });
         }
         
         function filterProducts(){
